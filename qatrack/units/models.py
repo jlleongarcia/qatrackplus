@@ -143,11 +143,15 @@ class UnitType(models.Model):
     name = models.CharField(
         verbose_name=_l("name"),
         max_length=50,
+        null=True,
+        blank=True,
         help_text=_l('Name for this unit type'),
     )
     model = models.CharField(
         verbose_name=_l("model"),
         max_length=50,
+        null=True,
+        blank=True,
         help_text=_l('Optional model name for this group'),
     )
 

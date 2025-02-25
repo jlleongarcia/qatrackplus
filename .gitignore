@@ -38,8 +38,6 @@ fixtures/dev
 ldap.debug
 /lib
 lib64
-qatrack/local_settings.py
-qatrack/local_test_settings.py
 logs/
 mail/*
 qatrack*.conf
