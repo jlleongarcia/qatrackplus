@@ -196,9 +196,9 @@ class UnitTypeAdmin(BaseQATrackAdmin):
         )
 
     def model_name(self, obj):
-        model = ' - {}'.format(obj.model) if obj.model else ''
-        vendor_name = '{}: '.format(obj.vendor.name) if obj.vendor else ''
-        return "{}{}{}".format(vendor_name, obj.name, model)
+        model = '{}'.format(obj.model) if obj.model else ''
+        vendor_name = '{} - '.format(obj.vendor.name) if obj.vendor else ''
+        return "{}{}".format(vendor_name, model)
 
 
 class ModalityAdmin(BaseQATrackAdmin):
