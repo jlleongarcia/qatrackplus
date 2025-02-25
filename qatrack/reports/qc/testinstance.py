@@ -60,7 +60,7 @@ class TestInstanceDetailsReport(BaseReport):
 
     def get_unit_test_info__unit_details(self, val):
         return (
-            _("Unit"),
+            _("Unidad"),
             ', '.join(u_models.Unit.objects.filter(pk__in=val).order_by("name").values_list("name", flat=True)),
         )
 
@@ -114,20 +114,21 @@ class TestInstanceDetailsReport(BaseReport):
             "unit_test_info__unit__site",
             "reference",
             "tolerance",
+            "status",
             "created_by",
         )
 
         headers = [[
-            _("Work Completed"),
-            _("Test"),
-            _("Unit"),
-            _("Site"),
-            _("Value"),
-            _("Reference"),
-            _("Tolerance"),
-            _("Skipped"),
-            _("Performed By"),
-            _("Comment"),
+            #_("Work Completed"),
+            _("Prueba"),
+            #_("Unit"),
+            #_("Site"),
+            #_("Value"),
+            #_("Reference"),
+            #_("Tolerance"),
+            _("Estado"),
+            #_("Performed By"),
+            _("Comentarios"),
         ]]
 
         table = headers
@@ -136,15 +137,15 @@ class TestInstanceDetailsReport(BaseReport):
             uti = ti.unit_test_info
 
             table.append([
-                ti.test_list_instance.work_completed,
+                #ti.test_list_instance.work_completed,
                 uti.test.name,
-                uti.unit.name,
-                uti.unit.site.name if uti.unit.site else "",
-                ti.value_display(),
-                ti.reference.value_display() if ti.reference else "",
-                ti.tolerance.name if ti.tolerance else "",
-                ti.skipped,
-                format_user(ti.created_by),
+                #uti.unit.name,
+                #uti.unit.site.name if uti.unit.site else "",
+                #ti.value_display(),
+                #ti.reference.value_display() if ti.reference else "",
+                # ti.tolerance.name if ti.tolerance else "",
+                ti.status,
+                #format_user(ti.created_by),
                 ti.comment,
             ])
 

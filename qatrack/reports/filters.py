@@ -110,13 +110,13 @@ class TestListInstanceFilter(BaseReportFilterSet):
         help_text=_l("Use this filter to limit report to one or more frequencies (leave blank to include all frequencies)"),
     )
 
-    unit_test_collection__assigned_to = django_filters.filters.ModelMultipleChoiceFilter(
-        label=_l("Assigned To"),
-        queryset=models.Group.objects.order_by("name"),
-        help_text=_l(
-            "Use this filter to limit report to one or more QC performing groups (leave blank to include all groups)"
-        ),
-    )
+    # unit_test_collection__assigned_to = django_filters.filters.ModelMultipleChoiceFilter(
+    #     label=_l("Assigned To"),
+    #     queryset=models.Group.objects.order_by("name"),
+    #     help_text=_l(
+    #         "Use this filter to limit report to one or more QC performing groups (leave blank to include all groups)"
+    #     ),
+    # )
 
     class Meta:
         model = models.TestListInstance
@@ -125,7 +125,7 @@ class TestListInstanceFilter(BaseReportFilterSet):
             "unit_test_collection__unit__site",
             "unit_test_collection__unit",
             'unit_test_collection__frequency',
-            'unit_test_collection__assigned_to',
+        #    'unit_test_collection__assigned_to',
         ]
 
     def __init__(self, *args, **kwargs):
@@ -133,7 +133,9 @@ class TestListInstanceFilter(BaseReportFilterSet):
         super().__init__(*args, **kwargs)
 
         self.form.fields['work_completed'].widget.attrs['class'] = "pastdate"
+        self.form.fields['work_completed'].initial = "This Year"
         self.form.fields['unit_test_collection__unit'].choices = unit_site_unit_type_choices()
+        self.form.fields['unit_test_collection__frequency'].initial = "Annual" # no hace nada
 
 
 class TestListInstanceByUTCFilter(BaseReportFilterSet):
@@ -149,11 +151,17 @@ class TestListInstanceByUTCFilter(BaseReportFilterSet):
         required=True,
     )
 
+    #unit_test_info__test = django_filters.filters.MultipleChoiceFilter(
+    #    label=_l("Test"),
+    #    help_text=_l("Use this filter to choose which tests to include in the report"),
+    #) # all this cluster is added to choose between test. Doesn't work!!
+
     class Meta:
         model = models.TestListInstance
         fields = [
             "work_completed",
             "unit_test_collection",
+            #"unit_test_info__test" # added
         ]
 
     def __init__(self, *args, **kwargs):
@@ -161,7 +169,9 @@ class TestListInstanceByUTCFilter(BaseReportFilterSet):
         super().__init__(*args, **kwargs)
 
         self.form.fields['work_completed'].widget.attrs['class'] = "pastdate"
+        self.form.fields['work_completed'].initial = "This Year"
         self.form.fields['unit_test_collection'].choices = utc_choices()
+        #self.form.fields['unit_test_info__test'].choices = test_category_choices() # added
 
 
 class UnitTestCollectionFilter(BaseReportFilterSet):
@@ -376,30 +386,32 @@ class UnitTestCollectionSchedulingFilter(BaseReportFilterSet):
 class TestDataFilter(BaseReportFilterSet):
 
     test_list_instance__work_completed = RelativeDateRangeFilter(
-        label=_l("Work Completed"),
-        help_text=_l("Dates to include QC data from"),
+        label=_l("Completado"),
+        help_text=_l("Rango de fechas a incluir en el informe"),
     )
 
     unit_test_info__test = django_filters.filters.MultipleChoiceFilter(
-        label=_l("Test"),
-        help_text=_l("Use this filter to choose which tests to include in the report"),
+        label=_l("Prueba"),
+        help_text=_l("Filtro para elegir qué pruebas aparecen en el informe"),
         required=True,
     )
 
     unit_test_info__unit__site = django_filters.filters.ModelMultipleChoiceFilter(
-        label=_l("Site"),
-        null_label=_l("Other"),
+        label=_l("Lugar"),
+        null_label=_l("Otro"),
         queryset=umodels.Site.objects.all(),
-        help_text=_l("Use this filter to limit report to one or more sites (leave blank to include all sites)"),
+        help_text=_l("Filtro para elegir la instalación donde se encuentra el equipo"),
+        required=True,
     )
 
     unit_test_info__unit = django_filters.filters.MultipleChoiceFilter(
-        label=_l("Unit"),
-        help_text=_l("Use this filter to limit report to one or more units (leave blank to include all units)"),
+        label=_l("Sala"),
+        help_text=_l("Filtro para elegir la sala donde se encuentra el equipo"),
+        required=True,
     )
 
     organization = django_filters.filters.ChoiceFilter(
-        label=_l("Organization"),
+        label=_l("Organización"),
         choices=[
             ("one_per_row", _l("One Test Instance Per Row")),
             ("group_by_unit_test_date", _l("Group by Unit/Test/Date")),
@@ -422,7 +434,7 @@ class TestDataFilter(BaseReportFilterSet):
         super().__init__(*args, **kwargs)
 
         self.form.fields['test_list_instance__work_completed'].widget.attrs['class'] = "pastdate"
-        self.form.fields['test_list_instance__work_completed'].initial = "Last 365 days"
+        self.form.fields['test_list_instance__work_completed'].initial = "This Year"
         self.form.fields['unit_test_info__unit'].choices = unit_site_unit_type_choices()
         self.form.fields['unit_test_info__test'].choices = test_category_choices()
 

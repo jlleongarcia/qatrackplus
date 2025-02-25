@@ -92,12 +92,12 @@ class Site(models.Model):
         verbose_name=_l("name"),
         max_length=64,
         unique=True,
-        help_text=_l('Name of this site'),
+        help_text=_l('Nombre de la instalación'),
     )
     slug = models.SlugField(
         verbose_name=_l("slug"),
         max_length=50,
-        help_text=_l("Unique identifier made of lowercase characters and underscores for this site"),
+        help_text=_l("Identificador de la instalación radiactiva"),
         unique=True,
     )
 
@@ -148,8 +148,6 @@ class UnitType(models.Model):
     model = models.CharField(
         verbose_name=_l("model"),
         max_length=50,
-        null=True,
-        blank=True,
         help_text=_l('Optional model name for this group'),
     )
 
@@ -162,20 +160,20 @@ class UnitType(models.Model):
     objects = UnitTypeManager()
 
     class Meta:
-        unique_together = [('name', 'model', 'vendor', 'unit_class',)]
-        ordering = ("vendor__name", "name",)
+        unique_together = [('model', 'vendor', 'unit_class',)]
+        ordering = ("vendor__name", "model",)
         verbose_name = _l("unit type")
         verbose_name_plural = _l("unit types")
 
     def natural_key(self):
         vendor = self.vendor.natural_key() if self.vendor else ()
         unit_class = self.unit_class.natural_key() if self.unit_class else ()
-        return (self.name, self.model) + vendor + unit_class
+        return (self.model) + vendor + unit_class
     natural_key.dependencies = ["units.vendor", "units.unitclass"]
 
     def __str__(self):
         """Display more descriptive name"""
-        return '%s%s' % (self.name, ' - %s' % self.model if self.model else '')
+        return '%s - %s' % (self.vendor, self.model if self.model else '')
 
 
 class Modality(models.Model):
