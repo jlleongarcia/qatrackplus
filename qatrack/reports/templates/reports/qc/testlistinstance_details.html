@@ -7,6 +7,8 @@
 
 {% block content %}
 
+
+
 {% for tli in queryset %}
 
   {% if not forloop.first and report_format != "pdf" %}
@@ -14,128 +16,39 @@
   {% endif %}
 
   <div {% if not forloop.first %}style="page-break-before: always; padding-top:20px;" {% endif %}>
-
-    <div class="row" >
+  
+	<div class="row" >
       <div class="col-xs-12">
         <strong>{% trans "Test List Instance Details" %} ::</strong>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-xs-6">
+	
+	<div class="row">
+      <div class="col-xs-12">
         <dl class="dl-horizontal">
-          <dt>{% trans "Unit"%}:</dt>
-          <dd>{{tli.unit_test_collection.unit.name}}</dd>
-
-          <dt>{% trans "Test List" %}:</dt>
-          <dd>
-              {{tli.test_list.name}}
-          </dd>
-
-          {% if "cycle" in tli.unit_test_collection.content_type.name %}
-            <dt>{% trans "Test List Cycle" %}:</dt>
-            <dd>{{ tli.unit_test_collection.name }}</dd>
-          {% endif %}
-
+		  <dt>{% trans "Work Completed" %}:</dt>
+		  <dd>{{ tli.work_completed }}</dd>
+		  
           <dt>{% trans "Performed By" %}:</dt>
-          <dd>{{ tli.created_by }} {% if tli.created_by.email %} ({{ tli.created_by.email }}){% endif %}</dd>
+          <dd>{{ tli.created_by }}</dd>
 
           <dt>{% trans "Reviewed by" %}:</dt>
           <dd>{% if tli.reviewed_by %}{{tli.reviewed_by}} @ {{tli.reviewed}} {% else %}<em>Not reviewed</em>{% endif %}</dd>
         </dl>
       </div>
-      <div class="col-xs-6">
-        <dl class="dl-horizontal">
-
-          <dt>{% trans "Work Started" %}:</dt>
-          <dd>{{tli.work_started}}</dd>
-
-          <dt>{% trans "Work Completed" %}:</dt>
-          <dd>
-              {% if tli.in_progress %}
-              <em>{% trans "In Progress" %}</em>
-              {% else %}
-                {{tli.work_completed}}
-              {% endif %}
-          </dd>
-
-          <dt>{% trans "Duration" %}:</dt>
-          <dd>
-              {% if not tli.in_progress%}
-                  {{tli.duration|as_time_delta}}
-              {% else %}
-              <em>{% trans "In Progress" %}</em>
-              {% endif %}
-          </dd>
-
-          <dt>{% trans "Last Modification" %}:</dt>
-          <dd>{{tli.modified_by}} @ {{tli.modified}}</dd>
-
-        </dl>
-      </div>
     </div>
-    <div class="row">
-      <div class="col-xs-12">
-        {% if tli.test_list.description %}
-          <div class="row">
-            <div class="col-md-12">
-              <dl class="dl-horizontal">
-                <dt>{% trans "Description" %}:</dt>
-                <dd>{{tli.test_list.description.strip|safe}}</dd>
-              </dl>
-            </div>
-          </div>
-        {% endif %}
 
-      </div>
-    </div>
-    {% if perms.service_log.view_serviceevent %}
-      <div class="row">
-        <div class="col-xs-12">
-          <strong>{% trans "Service Log Details" %}::</strong>
-          <dl class="dl-horizontal">
-            <dt>{% trans "Events Initiated" %}:</dt>
-            <dd>
-              {% for se in tli.serviceevents_initiated.all %}
-                <a href="{% url 'sl_details' pk=se.id %}"
-                  title="{% trans "View service event" %}"
-                  >{% trans "Service Event" %} {{ se.id }}</a>{% if not forloop.last %},{% endif %}
-              {% empty %}
-              <em>{% trans "None" %}</em>
-              {% endfor %}
-            </dd>
-
-            <dt>{% trans "RtS for Events" %}:</dt>
-            <dd>
-              {% for se in tli.rtsqa_for_tli.all %}
-              <a href="{% url 'sl_details' pk=se.id %}"
-                  style="color: {{ se.service_status.colour }}"
-                  title="{% trans "View service event" %}"
-                  >{% trans "Service Event" %}{{ se.id }}</a>{% if not forloop.last %},{% endif %}
-                {% empty %}
-                <em>{% trans "None" %}</em>
-                {% endfor %}
-            </dd>
-          </dl>
-        </div>
-      </div>
-    {% endif %}
-
+    
     <div class="row">
       <div class="col-xs-12">
         {% with borders=tli.sublist_borders %}
           <table id="review-table" class="table table-bordered table-striped table-condensed" >
             <thead>
               <tr>
-                <th style="">{% trans "Test" %}<div></div></th>
-                <th style="width: 10%"  class="review-value">{% trans "Value" %}</th>
-                <th style="width: 8%" class="review-ref">{% trans "Reference" %}</th>
-                <th style="width: 25%">{% trans "Tolerance" %}</th>
-                {% if review_diff_col %}
-                  <th style="width: 10%" class="review-status">{% trans "Difference" %}</th>
-                {% endif %}
-                <th style="width: 10%" class="review-status">{% trans "Pass/Fail" %}</th>
-                <th style="width: 10%" class="review-status">{% trans "Status" %}</th>
+                <th style="width: 35%" class="vertical-align">{% trans "Test" %}</th>
+                <th style="width: 20%"  class="review-value" class="center">{% trans "Valor" %}</th>
+                <th style="width: 20%" class="review-ref" class="center">{% trans "Referencia" %}</th>
+                <th style="width: 25%" class="review-status">{% trans "Estado" %}</th>
               </tr>
             </thead>
             <tbody>
@@ -159,7 +72,7 @@
                     {% endif %}
                   {% endwith %}
                   <tr>
-                    <td>{{test}}</td>
+                    <td class="center-left">{{test}}</td>
                     <td class="review-value">
                       <span
                         class="label pass-fail {{ ti.pass_fail }}"
@@ -176,29 +89,16 @@
                               <i class="pull-left fa fa-circle-o" aria-hidden="true"></i>
                           {% endif %}
                         {% endwith %}
-                        {{ ti.value_display | safe}}
+                        <p class="vertical-align">{{ ti.value_display | safe}}</p>
                       </span>
                     </td>
                     <td class="review-ref">
                       {% if ti.reference %}
-                        {{ ti.reference.value_display }}
+						<p class="center">{{ ti.reference.value_display }}</p>
                       {% endif %}
                     </td>
-                    <td style="font-size: 0.8em; padding-top: 8px;">
-                      {% if ti.tolerance %}
-                          {{ ti.tolerance.name }}
-                      {% endif %}
-                    </td>
-                    {% if review_diff_col %}
-                      <td class="review-diff">
-                        {% if not ti.string_value %}{{ti.diff_display}}{% endif %}
-                      </td>
-                    {% endif %}
                     <td class="review-status">
-                      {{ti.get_pass_fail_display}}
-                    </td>
-                    <td class="review-status">
-                      {{ti.status.name}}
+                      <p class="center">{{ ti.status.name }}</p>
                     </td>
                   </tr>
 

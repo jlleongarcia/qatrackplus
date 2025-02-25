@@ -15,7 +15,7 @@ from qatrack.qa import models
 from qatrack.qa.templatetags.qa_tags import as_time_delta
 from qatrack.qatrack_core.dates import format_as_date, format_datetime
 from qatrack.reports import filters
-from qatrack.reports.reports import BaseReport, format_user
+from qatrack.reports.reports import (BaseReport, format_user)
 from qatrack.units import models as umodels
 
 
@@ -62,7 +62,7 @@ class TestListInstanceSummaryReport(BaseReport):
 
     def get_unit_test_collection__unit_details(self, val):
         units = models.Unit.objects.select_related("site").filter(pk__in=val)
-        units = ('%s - %s' % (u.site.name if u.site else _("Other"), u.name) for u in units)
+        units = ('%s' % u.name for u in units)
         return ("Unit(s)", ', '.join(units))
 
     def get_unit_test_collection__frequency_details(self, val):
@@ -92,7 +92,6 @@ class TestListInstanceSummaryReport(BaseReport):
                     'unit_name': tli.unit_test_collection.unit.name,
                     'test_list_name': tli.test_list.name,
                     'due_date': format_as_date(tli.due_date),
-                    'work_completed': self.get_work_completed(tli),
                     'pass_fail': self.get_pass_fail_status(tli),
                     'link': self.make_url(tli.get_absolute_url(), plain=True),
                 })
@@ -114,7 +113,6 @@ class TestListInstanceSummaryReport(BaseReport):
             "unit_test_collection__unit__%s" % settings.ORDER_UNITS_BY,
             "unit_test_collection__name",
             "test_list__name",
-            "work_completed",
         ).select_related(
             "test_list",
             "unit_test_collection",
@@ -130,7 +128,7 @@ class TestListInstanceSummaryReport(BaseReport):
         if self.html:
             if not hasattr(self, "_pass_fail_t"):
                 self._pass_fail_t = get_template("qa/pass_fail_status.html")
-            return self._pass_fail_t.render({'instance': tli, 'show_icons': True})
+            return self._pass_fail_t.render({'instance': tli, 'show_icons': False})
 
         return ", ".join("%d %s" % (len(t), d) for s, d, t in tli.pass_fail_status())
 
@@ -152,24 +150,16 @@ class TestListInstanceSummaryReport(BaseReport):
 
         rows.append([
             _("Site"),
-            _("Unit"),
-            _("Test list"),
-            _("Due Date"),
-            _("Work Completed"),
+            _("Test"),
             _("Pass/Fail Status"),
-            _("Link"),
         ])
 
         for site, tlis in context['sites_data']:
             for tli in tlis:
                 rows.append([
                     site,
-                    tli['unit_name'],
                     tli['test_list_name'],
-                    tli['due_date'],
-                    tli['work_completed'],
                     tli['pass_fail'],
-                    tli['link'],
                 ])
 
         return rows
@@ -216,11 +206,19 @@ class TestListInstanceDetailsReport(BaseReport):
 
     def get_unit_test_collection_details(self, val):
         utcs = models.UnitTestCollection.objects.filter(pk__in=val)
-        return ("Unit / Test List", ', '.join("%s - %s" % (utc.unit.name, utc.name) for utc in utcs))
+        return ("Unit - Test List", ', '.join("%s - %s" % (utc.unit.name, utc.name) for utc in utcs))
 
     def get_context(self):
 
         context = super().get_context()
+
+        #selected_tests = self.request.GET.getlist('selected_tests')  # Get tests from query parameters
+        #context['selected_tests'] = selected_tests  # Pass selected tests to the template
+        #context['all_tests'] = models.Test.objects.all()  # Pass all tests for selection options
+
+        #test_queryset = models.TestInstance.objects.order_by("order")
+        #if selected_tests:
+        #    test_queryset = test_queryset.filter(unit_test_info__test__name__in=selected_tests) # cluster added
 
         qs = self.filter_set.qs.select_related(
             "created_by",
@@ -232,7 +230,7 @@ class TestListInstanceDetailsReport(BaseReport):
             "unit_test_collection__content_type",
         ).prefetch_related(
             "comments",
-            Prefetch("testinstance_set", queryset=models.TestInstance.objects.order_by("order")),
+            Prefetch("testinstance_set", queryset=models.TestInstance.objects.order_by("order")), #queryset=test_queryset
             "testinstance_set__unit_test_info__test",
             "testinstance_set__reference",
             "testinstance_set__tolerance",
@@ -331,7 +329,7 @@ class TestListInstanceDetailsReport(BaseReport):
             for c in context['comments'].get(tli.pk, []):
                 rows.append([_("Comment") + ":", format_datetime(c[0]), c[1], c[2]])
 
-            for a in tli.attachment_set.all():
+            for a in tli.attachment_set.all(): # removed _set.all but not worked as intended
                 rows.append([_("Attachment") + ":", a.label, self.make_url(a.attachment.url, plain=True)])
 
             rows.append([])
@@ -339,15 +337,16 @@ class TestListInstanceDetailsReport(BaseReport):
                 _("Test"),
                 _("Value"),
                 _("Reference"),
-                _("Tolerance"),
+                #_("Tolerance"),
             ]
-            if settings.REVIEW_DIFF_COL:
-                headers.append("Difference")
+            #if settings.REVIEW_DIFF_COL:
+            #    headers.append("Difference")
             headers.extend([
-                _("Pass/Fail"),
+                #_("Pass/Fail"),
                 _("Review Status"),
+                _("Work Completed"),
                 _("Comment"),
-                _("Attachments"),
+                #_("Attachments"),
             ])
             rows.append(headers)
 
@@ -356,15 +355,18 @@ class TestListInstanceDetailsReport(BaseReport):
                     ti.unit_test_info.test.name,
                     ti.value_display(coerce_numerical=False),
                     ti.reference.value_display() if ti.reference else "",
-                    ti.tolerance.name if ti.tolerance else "",
-                ]
-                if settings.REVIEW_DIFF_COL and not ti.string_value:
-                    row.append(ti.diff_display())
-                row.extend([
-                    ti.get_pass_fail_display(),
+                    #ti.tolerance.name if ti.tolerance else "",
                     ti.status.name,
                     ti.comment,
-                ])
+                ]
+                #if settings.REVIEW_DIFF_COL and not ti.string_value:
+                #    row.append(ti.diff_display())
+                #row.extend([
+                    #ti.get_pass_fail_display(),
+                    #ti.status.name,
+                    #format_user(ti.created_by),
+                    #ti.comment,
+                #])
                 for a in ti.attachment_set.all():
                     row.append(self.make_url(a.attachment.url, plain=True))
 

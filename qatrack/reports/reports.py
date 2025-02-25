@@ -45,9 +45,12 @@ def format_user(user):
     if not user:
         return ""
 
-    return user.username if not user.email else mark_safe(
-        '%s (<a href="mailto:%s">%s</a>)' % (user.username, user.email, user.email)
-    )
+    # return user.username if not user.email else mark_safe(
+    #     '%s (<a href="mailto:%s">%s</a>)' % (user.username, user.email, user.email)
+    # )
+    full_name = '%s %s' % (user.first_name, user.last_name)
+
+    return full_name #user.full_name.strip() no funciona; user.first_name funciona, comprobado
 
 
 class ReportMeta(type):
@@ -210,10 +213,11 @@ class BaseReport(object, metaclass=ReportMeta):
                     label, field_details = getter(val)
                 except ValueError:  # pragma: no cover
                     raise ValueError("get_%s_details should return a 2-tuple of form (label:str, details:str)" % name)
-
-                details.append((label, field_details))
+                if label not in (_l("Test"), _l("Prueba"), _l("Organización"), _l("Organization")):
+                    details.append((label, field_details))
             else:
-                details.append((field.label, self.default_detail_value_format(val)))
+                if field.label not in (_l("Test"), _l("Prueba"), _l("Organización"), _l("Organization")):
+                    details.append((field.label, self.default_detail_value_format(val)))
 
         return details
 
