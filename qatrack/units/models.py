@@ -32,13 +32,13 @@ class Vendor(models.Model):
         unique=True,
         help_text=_l('Name of this vendor'),
     )
-    notes = models.TextField(
-        verbose_name=_l("notes"),
-        max_length=255,
-        blank=True,
-        null=True,
-        help_text=_l('Additional notes about this vendor')
-    )
+    # notes = models.TextField(
+    #     verbose_name=_l("notes"),
+    #     max_length=255,
+    #     blank=True,
+    #     null=True,
+    #     help_text=_l('Additional notes about this vendor')
+    # )
 
     objects = NameNaturalKeyManager()
 
