@@ -231,7 +231,8 @@ class Unit(models.Model):
         help_text=_l('A unique number for this unit. Leave blank to have it assigned automatically'),
     )
     name = models.CharField(max_length=256, help_text=_l('The display name for this unit'))
-    serial_number = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Optional serial number'))
+    serial_number = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Equipment Serial Number'))
+    tube_sn = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Tube Serial Number'))
     location = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Optional location information'))
     install_date = models.DateField(null=True, blank=True, help_text=_l('Optional install date'))
     date_acceptance = models.DateField(
