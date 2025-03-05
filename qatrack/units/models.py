@@ -232,7 +232,7 @@ class Unit(models.Model):
     )
     name = models.CharField(max_length=256, help_text=_l('The display name for this unit'))
     serial_number = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Equipment Serial Number'))
-    tube_sn = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Tube Serial Number'))
+    tube_serial_number = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Tube Serial Number'))
     location = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Optional location information'))
     install_date = models.DateField(null=True, blank=True, help_text=_l('Optional install date'))
     date_acceptance = models.DateField(
