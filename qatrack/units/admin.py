@@ -78,7 +78,7 @@ class UnitFormAdmin(ModelForm):
             return ut.vendor.name if ut.vendor else "Other"
 
         def vendor_unit_type(ut):
-            return "%s :: %s" % (ut.vendor.name if ut.vendor else "Other", ut.name)
+            return "%s" % (ut.model)
 
         unit_types = UnitType.objects.select_related("vendor").order_by("vendor__name", "name")
         choices = [(v, list(uts)) for (v, uts) in groupby(unit_types, key=vendor_name)]
