@@ -222,7 +222,7 @@ class Unit(models.Model):
     Stores a single radiation device (e.g. Linac, Tomo unit, Cyberkinfe etc.)
     """
     type = models.ForeignKey(UnitType, verbose_name=_l("Unit Type"), on_delete=models.PROTECT)
-    site = models.ForeignKey(Site, null=True, blank=True, on_delete=models.PROTECT)
+    site = models.ForeignKey(Site, null=True, blank=False, on_delete=models.PROTECT)
 
     number = models.PositiveIntegerField(
         null=False,
