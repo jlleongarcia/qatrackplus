@@ -53,6 +53,7 @@ class UnitFormAdmin(ModelForm):
             'number',
             'name',
             'serial_number',
+            'system_number',
             'tube_serial_number',
             'location',
             'install_date',

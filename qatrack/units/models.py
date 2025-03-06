@@ -228,21 +228,22 @@ class Unit(models.Model):
         null=False,
         blank=True,
         unique=True,
-        help_text=_l('A unique number for this unit. Leave blank to have it assigned automatically'),
+        help_text=_l('A unique number for this unit. Leave blank to have it assigned automatically.'),
     )
-    name = models.CharField(max_length=256, help_text=_l('The display name for this unit'))
-    serial_number = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Equipment Serial Number'))
-    tube_serial_number = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Tube Serial Number'))
-    location = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Optional location information'))
-    install_date = models.DateField(null=True, blank=True, help_text=_l('Optional install date'))
+    name = models.CharField(max_length=256, help_text=_l('The display name for this unit.'))
+    serial_number = models.CharField(max_length=256, null=True, blank=False, help_text=_l('Equipment Serial Number. For GE Healthcare machines, use System Number instead if there is no serial number registered.'))
+    system_number = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Only for GE Healthcare machines, if we already have a Serial Number registered.'))
+    tube_serial_number = models.CharField(max_length=256, null=True, blank=False, help_text=_l('Tube Serial Number.'))
+    location = models.CharField(max_length=256, null=True, blank=True, help_text=_l('Optional location information.'))
+    install_date = models.DateField(null=True, blank=True, help_text=_l('Optional install date.'))
     date_acceptance = models.DateField(
         verbose_name=_l("Acceptance date"),
-        help_text=_l('Changing acceptance date will delete unit available times that occur before it'),
+        help_text=_l('Changing acceptance date will delete unit available times that occur before it.'),
     )
-    active = models.BooleanField(default=True, help_text=_l('Set to false if unit is no longer in use'))
+    active = models.BooleanField(default=True, help_text=_l('Set to false if unit is no longer in use.'))
     # restricted = models.BooleanField(default=False, help_text=_l('Set to false to restrict unit from operation'))
     is_serviceable = models.BooleanField(
-        default=True, help_text=_l('Set to true to enable this unit to be selectable in service events')
+        default=True, help_text=_l('Set to true to enable this unit to be selectable in service events.')
     )
 
     modalities = models.ManyToManyField(Modality)
