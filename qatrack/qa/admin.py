@@ -1207,7 +1207,7 @@ class UnitTestCollectionForm(forms.ModelForm):
 
         freq = self.fields['frequency']
         freq.queryset = freq.queryset.order_by("name")
-        freq.empty_label = _("Ad Hoc (Unscheduled)")
+        freq.empty_label = _("Ad Hoc (A petición)")
 
     def _clean_readonly(self, f):
         data = self.cleaned_data.get(f, None)
