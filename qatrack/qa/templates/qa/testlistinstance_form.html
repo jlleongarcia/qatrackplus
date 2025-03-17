@@ -525,8 +525,57 @@
                                             {% endif %}
                                         </tr>
                                     </thead>
-                                    {% for ti_form in formset %}
-                                        {% include "qa/qavalue_form.html" with test_info=ti_form.instance test_list=test_list show_test_list_name=True %}
+                                    {% for test_form in formset %}
+                                        {% with borders.starts|lookup:forloop.counter0 as delim %}
+                                            {% if delim and delim.class == "sublist" %}
+                                              <tr class="{{delim.class }}">
+                                                <td colspan="2">
+                                                  {% if delim.description %}
+                                                    <a class="show-sublist-details" href="#">
+                                                      {{ delim.name }}
+                                                    </a>
+                                                  {% else %}
+                                                      {{ delim.name }}
+                                                  {% endif %}
+                                                </td>
+                                                <td colspan="{% qa_table_colspan perms offset=2 %}">&nbsp;</td>
+                                              </tr>
+
+                                              <tr class="qa-procedure no-hover">
+                                                  <td colspan="{% qa_table_colspan perms %}">
+                                                      <div>
+                                                        <div class="procedure-container procedure-bar">
+                                                            <div class="qa-procedure-text">
+                                                                {% if delim.description %}
+                                                                    <div class="pre">{{ delim.description | safe }}</div>
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                      </div>
+                                                  </td>
+                                              </tr>
+                                            {% endif %}
+
+                                            {% if delim.class == "sublist" or test_form.get_test_info.show_category %}
+                                              {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_category=1 %}
+                                            {% else %}
+                                              {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_category=0 %}
+                                            {% endif %}
+
+                                        {% endwith %}
+
+
+                                        {% if not forloop.last and borders.ends|lookup:forloop.counter0 %}
+                                          {% with borders.starts|lookup:forloop.counter as delim %}
+                                            {% if not delim or delim.class != "sublist" %}
+                                            <tr class="end-sublist">
+                                                <td colspan="{% qa_table_colspan perms %}"></td>
+                                            </tr>
+                                            {% endif %}
+                                          {% endwith %}
+
+                                        {% endif %}
+
                                     {% endfor %}
                                 </table>
 
