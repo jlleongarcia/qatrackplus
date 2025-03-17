@@ -526,7 +526,7 @@
                                         </tr>
                                     </thead>
                                     {% for ti_form in formset %}
-                                        {% include "qa/qavalue_form.html" with test_info=ti_form.instance show_category=False form=ti_form test_list=test_list show_test_list_name=True %}
+                                        {% include "qa/qavalue_form.html" with test_info=ti_form.instance test_list=test_list show_test_list_name=True %}
                                     {% endfor %}
                                 </table>
 
