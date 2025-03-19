@@ -149,6 +149,9 @@ CHROME_PATH = 'C:/Program Files/Google/Chrome/Application/chrome.exe'
 # To show category in each test (False) or just in the first test (True) sharing the same category:
 CATEGORY_FIRST_OF_GROUP_ONLY = True
 
+# To show test list name in each test (False) or just in the first test (True) within the same test list:
+TEST_LIST_NAME_FIRST_OF_GROUP_ONLY = True
+
 # To use Black for autoformatting:
 COMPOSITE_AUTO_FORMAT = True
 
