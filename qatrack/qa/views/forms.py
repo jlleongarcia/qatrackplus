@@ -190,7 +190,7 @@ class CreateTestInstanceForm(TestInstanceWidgetsMixin, forms.Form):
 
     def set_unit_test_info(self, unit_test_info, show_test_list_name):
         self.unit_test_info = unit_test_info
-        self.show_test_list_name = show_test_list_name or not settings.TEST_LIST_NAME_FIRST_OF_GROUP_ONLY
+        self.show_test_list_name = show_test_list_name #or not settings.TEST_LIST_NAME_FIRST_OF_GROUP_ONLY
         self.set_value_widget()
         self.disable_read_only_fields()
 
