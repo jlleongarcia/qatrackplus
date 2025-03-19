@@ -557,9 +557,9 @@
                                             {% endif %}
 
                                             {% if delim.class == "sublist" %}
-                                              {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=1 %}
-                                            {% else %}
                                               {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=0 %}
+                                            {% else %}
+                                              {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=1 %}
                                             {% endif %}
 
                                         {% endwith %}
