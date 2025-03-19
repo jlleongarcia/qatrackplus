@@ -304,7 +304,7 @@ class UpdateTestInstanceFormSet(UserFormsetMixin, BaseUpdateTestInstanceFormSet)
         prev_cat = None
         for form in self.forms:
             cur_cat = form.unit_test_info.test.category_id
-            form.show_test_list_name = cur_cat != prev_cat
+            form.show_category = cur_cat != prev_cat
             prev_cat = cur_cat
 
 
