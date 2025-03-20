@@ -609,9 +609,9 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-9 col-md-offset-3 col-lg-7 col-lg-offset-5">
 
-                                        <button id="submit-qa" type="submit" class="btn btn-primary btn-flat pull-right ping-popover">Submit QC Results</button>
+                                        <button id="submit-qa" type="submit" class="btn btn-primary btn-flat pull-right ping-popover">Subir resultados del control</button>
 
-{#                                        <a id="toggle-gen-comment" class="btn btn-default btn-flat pull-right margin-r-5" href="#!" title="Click here to add a general comment about this set of tests">Add Comment</a>#}
+{#                                        <a id="toggle-gen-comment" class="btn btn-default btn-flat pull-right margin-r-5" href="#!" title="Añadir aquí cualquier comentario sobre el conjunto de pruebas">Añadir comentario</a>#}
 
                                         <div id="in-progress-container" class="pull-right margin-r-5">
                                             {% if perms.qa.can_save_in_progress %}
@@ -748,7 +748,7 @@
 
             <ul class="sidebar-menu">
 
-                <li class="header">Test List Menu</li>
+                <li class="header">Menú del listado de pruebas</li>
 
                 {% if test_list.description or unit_test_collection.tests_object.description %}
                     <li class="primary toggle-element" data-toggle="description"><a id="toggle-description" href="#!">
@@ -756,21 +756,21 @@
                             <i class="fa fa-file-text-o fa-stack-custom-main"></i>
                             <i class="fa fa-info fa-stack-custom-sub info"></i>
                         </i>
-                        <span>Description</span>
+                        <span>Descripción</span>
                     </a></li>
                 {% endif %}
 
                 {% if perms.qa.can_review and perms.qa.can_review_own_tests or perms.qa.can_override_date %}
                     <li title="Toggle admin options visibility" class="primary toggle-element active" data-toggle="admin"><a id="toggle-options" href="#!">
                         <i class="fa fa-unlock-alt fa-fw" aria-hidden="true"></i>
-                        <span>Admin Options</span>
+                        <span>Opciones de administrador</span>
                     </a></li>
                 {% endif %}
 
                 {% if attachments|length > 0 %}
                     <li class="primary toggle-element active" data-toggle="attachments"><a id="toggle-options" href="#!">
                         <i class="fa fa-paperclip fa-fw" aria-hidden="true"></i>
-                        <span>Attachemnts</span>
+                        <span>Archivos adjuntos</span>
                     </a></li>
                 {% endif %}
 
@@ -778,14 +778,14 @@
                     {% if perms.service_log.add_serviceevent or service_events_ib|length > 0 %}
                         <li class="primary toggle-element active" data-toggle="serviceevents"><a id="toggle-options" href="#!">
                             <i class="fa fa-wrench fa-fw" aria-hidden="true"></i>
-                            <span>Service Events</span>
+                            <span>Partes de mantenimiento</span>
                         </a></li>
                     {% endif %}
                 {% endif %}
 
                 <li title="Toggle comments visibility" class="primary toggle-element active" data-toggle="comments"><a id="toggle-options" href="#!">
                     <i class="fa fa-commenting-o fa-fw" aria-hidden="true"></i>
-                    <span>Comments</span>
+                    <span>Comentarios</span>
                 </a></li>
 
                 {# Category selection #}
@@ -844,7 +844,7 @@
                 <li title="Click to toggle contacts visibility" class="primary toggle-element" data-toggle="contacts">
                   <a id="toggle-contacts" href="#!">
                     <i class="fa fa-phone fa-fw" aria-hidden="true"></i>
-                    <span>Contacts</span>
+                    <span>Contactos</span>
                   </a>
                 </li>
 
@@ -895,7 +895,7 @@
                 <li title="{% trans "Click to log a new fault" %}" class="primary toggle-element">
                   <a class="fault-modal-toggle" href="#" data-target="#fault-modal" data-toggle="modal">
                     <i class="fa fa-exclamation-triangle fa-fw" aria-hidden="true"></i>
-                    <span>{% trans "Log Fault" %}</span>
+                    <span>{% trans "Registro de fallos" %}</span>
                   </a>
                 </li>
 
@@ -994,7 +994,7 @@
         </button>
         <button id="save_fault" type="button" class="btn btn-flat btn-primary">
           <i class="fa fa-save"></i>
-          {% trans "Log Fault" %}
+          {% trans "Registro de fallos" %}
         </button>
       </div>
     </div><!-- /.modal-content -->
