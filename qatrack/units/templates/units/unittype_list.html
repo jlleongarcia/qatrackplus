@@ -27,8 +27,8 @@ require(['unit_choose']);
 
                 <h4 class="header-spacer">
                   {{ type.0 }}
-                  {% blocktrans with unit_type=type.0 asvar title_hidden %}Click to show {{ unit_type }} units{% endblocktrans %}
-                  {% blocktrans with unit_type=type.0 asvar title_shown %}Click to hide {{ unit_type }} units{% endblocktrans %}
+                  {% blocktrans with unit_class=type.0 asvar title_hidden %}Click to show {{ unit_class }} units{% endblocktrans %}
+                  {% blocktrans with unit_class=type.0 asvar title_shown %}Click to hide {{ unit_class }} units{% endblocktrans %}
                   <a role="button" data-toggle="collapse" data-target="#collapse-{{ site.0 }}-{{ forloop.counter }}"
                     title="{% if type.1 %}{{ title_hidden }}{% else %}{{ title_shown }}{% endif %}"
                     data-title-shown="{{ title_shown }}"
@@ -88,8 +88,8 @@ require(['unit_choose']);
 
                   <h4 class="header-spacer">
                     {{ type.0 }}
-                    {% blocktrans with unit_type=type.0 asvar title_hidden %}Mostrar {{ unit }} QA{% endblocktrans %}
-                    {% blocktrans with unit_type=type.0 asvar title_shown %}Ocultar {{ unit }} QA{% endblocktrans %}
+                    {% blocktrans with unit_class=type.0 asvar title_hidden %}Mostrar {{ unit_class }} QA{% endblocktrans %}
+                    {% blocktrans with unit_class=type.0 asvar title_shown %}Ocultar {{ unit_class }} QA{% endblocktrans %}
                     <a role="button" data-toggle="collapse" data-target="#collapse-{{ site.0 }}-{{ forloop.counter }}"
                       title="{% if type.1 %}{{ title_hidden }}{% else %}{{ title_shown }}{% endif %}"
                       data-title-shown="{{ title_shown }}"
