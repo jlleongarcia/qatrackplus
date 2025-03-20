@@ -196,7 +196,7 @@
                         <div class="box-header">
                             <h3 class="box-title">
                                 <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-                                Admin Options
+                                Opciones de administrador
                             </h3>
                         </div>
                         <div class="box-body">
@@ -204,7 +204,7 @@
                                 <div class="col-sm-12 form-horizontal">
                                     <div class="row {% if form.work_started.errors %} has-error{% endif %}">
                                         <label for="id_work_started" class="col-md-5">
-                                            {{form.work_started.label}}:
+                                            Comienzo del control:<!-- {{form.work_started.label}}: -->
                                         </label>
                                         <div class="col-md-7">
                                             {{form.work_started}}
@@ -218,7 +218,7 @@
                                     {% if perms.qa.can_override_date %}
                                         <div class="row">
                                             <label for="id_work_duration" class="col-md-5">
-                                                Work duration:
+                                                Duración del control:
                                             </label>
                                             <div class="col-md-7">
                                                 <input id="id_work_duration" name="work_duration" class="form-control">
@@ -228,7 +228,7 @@
 
                                         <div class="row{% if form.work_completed.errors %} has-error{% endif %}">
                                             <label for="id_work_completed" class="col-md-5">
-                                                {{form.work_completed.label}}:
+                                                Finalización del control<!-- {{form.work_completed.label}}: -->
                                             </label>
                                             <div class="col-md-7">
                                                 {{form.work_completed}}
@@ -241,13 +241,13 @@
 
                                         <div class="row{% if form.include_for_scheduling.errors %} has-error{% endif %}">
                                             <label for="id_include_for_scheduling" class="col-md-5">
-                                                {{ form.include_for_scheduling.label}}:
+                                                Incluir en la programación<!-- {{ form.include_for_scheduling.label}}: -->
                                             </label>
                                             <div class="col-md-1">
                                                 {{ form.include_for_scheduling }}
                                             </div>
                                             <div class="col-md-6 help-block">
-                                              {% trans "Uncheck if you don't want to advance the due date for this test list instance" %}
+                                              {% trans "Desclicar si no quieres avanzar la fecha de vencimiento de esta instancia" %}
                                             </div>
                                             {% for e in form.include_for_scheduling.errors %}
                                                 <div class="col-sm-12 help-block text-center">{{ e }}</div>
@@ -257,7 +257,7 @@
                                     {% if perms.qa.can_review and perms.qa.can_review_own_tests %}
                                         <div class="row" id="status">
                                             <label for="id_status" class="col-md-5">
-                                                Set Status:
+                                                Establecer estado:
                                             </label>
                                             <div class="col-md-7">
                                                 {{ form.status }}
@@ -281,7 +281,7 @@
                         <div class="box-header">
                             <h5 class="box-title">
                                 <i class="fa fa-paperclip" aria-hidden="true"></i>
-                                {{ test_list.name }} Test List Attachments
+                                Archivos adjuntos en {{ test_list.name }}
                             </h5>
                         </div>
                         <div class="box-body">
@@ -990,7 +990,7 @@
 
         <button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal">
           <i class="fa fa-ban"></i>
-          {% trans "Cancel" %}
+          {% trans "Cancelar" %}
         </button>
         <button id="save_fault" type="button" class="btn btn-flat btn-primary">
           <i class="fa fa-save"></i>
