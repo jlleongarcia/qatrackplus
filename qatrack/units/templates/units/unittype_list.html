@@ -5,7 +5,7 @@ require(['unit_choose']);
 
 {% load i18n %}
 
-{% block head_title %}{% trans "Choose Unit" %}{% endblock %}
+{% block head_title %}{% trans "Elige una unidad" %}{% endblock %}
 
 {% block body %}
 
@@ -16,8 +16,8 @@ require(['unit_choose']);
       <div class="box">
         <div class="box-header">
           <i class="fa fa-cube" aria-hidden="true"></i>
-          <h3 class="box-title">{% trans "Choose a Unit to Perform QC On" %}</h3>
-          <p>{% trans "Click a button to perform QC for one of the units below." %}</p>
+          <h3 class="box-title">{% trans "Elige una unidad para hacer el control de calidad" %}</h3>
+          <p>{% trans "Clica para realizar el control de calidad para una de las unidades a continuación." %}</p>
         </div>
         <div class="box-body pad">
           {% for type, units in unit_types %}
@@ -42,7 +42,7 @@ require(['unit_choose']);
                       class="collapse"
                     {% else %}
                       class="collapse in"
-                      title="{% blocktrans with unit_type=type.o %}Click to hid {{ unit_type }} units{% endblocktrans %}"
+                      title="{% blocktrans with unit_type=type.o %}Click to hide {{ unit_type }} units{% endblocktrans %}"
                     {% endif %}
                   >
                   {% for unit in units %}
@@ -64,8 +64,8 @@ require(['unit_choose']);
 
   <div class="row">
     <div class="col-md-12">
-      <h4><i class="fa fa-cube" aria-hidden="true"></i>{% trans "Choose a Unit to Perform QC On" %}</h4>
-      <p>{% trans "Click a button to perform QC for one of the units below." %}</p>
+      <h4><i class="fa fa-cube" aria-hidden="true"></i>{% trans "Elige una unidad para hacer el control de calidad" %}</h4>
+      <p>{% trans "Clica para realizar el control de calidad para una de las unidades a continuación." %}</p>
     </div>
   </div>
   <div class="row equal-cols">
@@ -88,8 +88,8 @@ require(['unit_choose']);
 
                   <h4 class="header-spacer">
                     {{ type.0 }}
-                    {% blocktrans with unit_type=type.0 asvar title_hidden %}Click to show {{ unit_type }} units{% endblocktrans %}
-                    {% blocktrans with unit_type=type.0 asvar title_shown %}Click to hide {{ unit_type }} units{% endblocktrans %}
+                    {% blocktrans with unit_type=type.0 asvar title_hidden %}Mostrar {{ unit }} QA{% endblocktrans %}
+                    {% blocktrans with unit_type=type.0 asvar title_shown %}Ocultar {{ unit }} QA{% endblocktrans %}
                     <a role="button" data-toggle="collapse" data-target="#collapse-{{ site.0 }}-{{ forloop.counter }}"
                       title="{% if type.1 %}{{ title_hidden }}{% else %}{{ title_shown }}{% endif %}"
                       data-title-shown="{{ title_shown }}"
