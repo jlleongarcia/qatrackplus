@@ -591,3 +591,24 @@ td.qa-category .comment-bar {
   display: inline-block;
   margin-left: 10px;
 }
+
+.group-header {
+    background-color: #f0f0f0; /* Light gray background for headers */
+    cursor: pointer; /* Make the header look clickable */
+}
+
+.group-header .group-toggle {
+    display: block; /* Make the whole header clickable */
+    padding: 10px;
+    text-decoration: none;
+    color: #333;
+}
+
+.group-header .group-toggle i {
+    margin-right: 10px;
+}
+
+.hidden {
+    display: none;
+}
+

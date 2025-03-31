@@ -1652,12 +1652,14 @@ require(['jquery', 'lodash', 'moment', 'dropzone', 'autosize', 'cheekycheck', 'i
             var icon = $(this).find('i');
     
             rows.toggleClass('hidden');
+
+            icon.toggleClass('fa-chevron-down fa-chevron-up');
     
-            if (icon.hasClass('fa-chevron-down')) {
-                icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
-            } else {
-                icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
-            }
+            // if (icon.hasClass('fa-chevron-down')) {
+            //     icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            // } else {
+            //     icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            // }
         });
 
     });
