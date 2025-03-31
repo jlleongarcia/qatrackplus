@@ -525,58 +525,38 @@
                                             {% endif %}
                                         </tr>
                                     </thead>
-                                    {% for test_form in formset %}
-                                        {% with borders.starts|lookup:forloop.counter0 as delim %}
-                                            {% if delim and delim.class == "sublist" %}
-                                              <tr class="{{delim.class }}">
-                                                <td colspan="2">
-                                                  {% if delim.description %}
-                                                    <a class="show-sublist-details" href="#">
-                                                      {{ delim.name }}
-                                                    </a>
-                                                  {% else %}
-                                                      {{ delim.name }}
-                                                  {% endif %}
-                                                </td>
-                                                <td colspan="{% qa_table_colspan perms offset=2 %}">&nbsp;</td>
-                                              </tr>
+                                    <tbody>
+                                        {% for test_form in formset %}
+                                            {% with borders.starts|lookup:forloop.counter0 as delim %}
+                                                {% if delim and delim.class == "sublist" %}
+                                                    <tr class="group-header" data-group="{{ delim.name|slugify }}">
+                                                        <td colspan="{% qa_table_colspan perms %}">
+                                                            <a href="#" class="group-toggle">
+                                                                <i class="fa fa-chevron-down"></i> {{ delim.name }}
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                {% endif %}
 
-                                              <tr class="qa-procedure no-hover">
-                                                  <td colspan="{% qa_table_colspan perms %}">
-                                                      <div>
-                                                        <div class="procedure-container procedure-bar">
-                                                            <div class="qa-procedure-text">
-                                                                {% if delim.description %}
-                                                                    <div class="pre">{{ delim.description | safe }}</div>
-                                                                {% endif %}
-                                                            </div>
-                                                        </div>
-                                                      </div>
-                                                  </td>
-                                              </tr>
-                                            {% endif %}
-
-                                            {% if delim.class == "sublist" %}
-                                              {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=0 %}
-                                            {% else %}
-                                              {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=0 %}
-                                            {% endif %}
-
-                                        {% endwith %}
+                                                <tr class="test-row {% if delim.class == "sublist" %}hidden{% endif %}" data-group="{{ delim.name|slugify }}">
+                                                    {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=0 %}
+                                                </tr>
+                                            {% endwith %}
 
 
-                                        {% if not forloop.last and borders.ends|lookup:forloop.counter0 %}
-                                          {% with borders.starts|lookup:forloop.counter as delim %}
-                                            {% if not delim or delim.class != "sublist" %}
-                                            <tr class="end-sublist">
-                                                <td colspan="{% qa_table_colspan perms %}"></td>
-                                            </tr>
-                                            {% endif %}
-                                          {% endwith %}
+                                            <!-- {% if not forloop.last and borders.ends|lookup:forloop.counter0 %}
+                                                {% with borders.starts|lookup:forloop.counter as delim %}
+                                                    {% if not delim or delim.class != "sublist" %}
+                                                    <tr class="end-sublist">
+                                                        <td colspan="{% qa_table_colspan perms %}"></td>
+                                                    </tr>
+                                                    {% endif %}
+                                                {% endwith %}
 
-                                        {% endif %}
+                                            {% endif %} -->
 
-                                    {% endfor %}
+                                        {% endfor %}
+                                    </tbody>
                                 </table>
 
                                 <div class="row">

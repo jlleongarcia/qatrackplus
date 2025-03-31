@@ -1645,6 +1645,21 @@ require(['jquery', 'lodash', 'moment', 'dropzone', 'autosize', 'cheekycheck', 'i
             extra_class: 'warning'
         });
 
+        $('.group-toggle').click(function(e) {
+            e.preventDefault();
+            var groupName = $(this).closest('tr').data('group');
+            var rows = $('tr[data-group="' + groupName + '"]');
+            var icon = $(this).find('i');
+    
+            rows.toggleClass('hidden');
+    
+            if (icon.hasClass('fa-chevron-down')) {
+                icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
+            } else {
+                icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
+            }
+        });
+
     });
 });
 
