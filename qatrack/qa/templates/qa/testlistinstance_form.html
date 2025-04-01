@@ -542,19 +542,6 @@
                                                     {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=0 %}
                                                 </tr>
                                             {% endwith %}
-
-
-                                            <!-- {% if not forloop.last and borders.ends|lookup:forloop.counter0 %}
-                                                {% with borders.starts|lookup:forloop.counter as delim %}
-                                                    {% if not delim or delim.class != "sublist" %}
-                                                    <tr class="end-sublist">
-                                                        <td colspan="{% qa_table_colspan perms %}"></td>
-                                                    </tr>
-                                                    {% endif %}
-                                                {% endwith %}
-
-                                            {% endif %} -->
-
                                         {% endfor %}
                                     </tbody>
                                 </table>
