@@ -1645,8 +1645,9 @@ require(['jquery', 'lodash', 'moment', 'dropzone', 'autosize', 'cheekycheck', 'i
             extra_class: 'warning'
         });
 
-        $('td > a.group-toggle').click(function(e) {
+        $('.group-toggle').click(function(e) {
             e.preventDefault();
+            // const currentScrollPosition = window.scrollY; // Store the current scroll position
             var groupName = $(this).closest('tr').data('group');
             var rows = $('tr[data-group="' + groupName + '"]');
             var icon = $(this).find('i');
@@ -1661,12 +1662,14 @@ require(['jquery', 'lodash', 'moment', 'dropzone', 'autosize', 'cheekycheck', 'i
             // }
 
             icon.toggleClass('fa-chevron-down fa-chevron-up');
+
+            // window.scrollTo(0, currentScrollPosition); // Restore the scroll position
     
         });
 
         // Hide rows by default
         $('tr[data-group]').addClass('hidden');
-        // $('td > a.group-toggle i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        // $('.group-toggle i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
 
     });
 });
