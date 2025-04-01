@@ -608,6 +608,27 @@ td.qa-category .comment-bar {
     margin-right: 10px;
 }
 
+/* new styles */
+/* .test-row {
+    display: none; /* Initially hide detail rows
+}
+
+.group-header {
+    cursor: pointer; /* Indicate that the header is clickable
+}
+
+.group-header .fa-chevron-down {
+    transition: transform 0.3s ease; /* Smoothly animate chevron rotation
+}
+
+.group-header.expanded .fa-chevron-down {
+    transform: rotate(180deg); /* Rotate the chevron when expanded
+}
+
+.test-row.expanded {
+    display: table-row; /* Display detail rows when expanded
+} */
+
 .hidden {
     display: none;
 }

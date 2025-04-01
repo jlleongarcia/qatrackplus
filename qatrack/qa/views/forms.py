@@ -447,7 +447,7 @@ class CreateTestListInstanceForm(BaseTestListInstanceForm):
         now = timezone.localtime(timezone.now())
         self.fields['work_started'].initial = format_datetime(now)
         self.fields['comment'].widget.attrs['rows'] = '3'
-        self.fields['comment'].widget.attrs['placeholder'] = _('Add comment about this set of tests')
+        self.fields['comment'].widget.attrs['placeholder'] = _('Añade comentarios sobre esta lista de pruebas si es necesario')
         self.fields['comment'].widget.attrs['class'] = 'autosize form-control'
 
 
