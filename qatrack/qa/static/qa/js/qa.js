@@ -1645,14 +1645,24 @@ require(['jquery', 'lodash', 'moment', 'dropzone', 'autosize', 'cheekycheck', 'i
             extra_class: 'warning'
         });
 
+        $('.toggle-element').click(function(e) {
+            e.preventDefault();
+            var toggle = $(this).data('toggle');
+            $('#box-' + toggle).slideToggle();
+            $(this).toggleClass('active');
+        });
+
         $('.group-toggle').click(function(e) {
             e.preventDefault();
             // const currentScrollPosition = window.scrollY; // Store the current scroll position
-            var groupName = $(this).closest('tr').data('group');
-            var rows = $('tr[data-group="' + groupName + '"]');
-            var icon = $(this).find('i');
-    
-            rows.toggleClass('hidden');
+            var group = $(this).data('toggle');
+            var $testRows = $('.test-row[data-group="' + group + '"]');
+
+            $testRows.slideToggle();
+
+            // Toggle the icon (chevron-down/chevron-up)
+            var $icon = $(this).find('i');
+            $icon.toggleClass('fa-chevron-down fa-chevron-up');
 
             // Toggle the icon class
             // if (rows.hasClass('hidden')) {
@@ -1660,8 +1670,6 @@ require(['jquery', 'lodash', 'moment', 'dropzone', 'autosize', 'cheekycheck', 'i
             // } else {
             //     icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
             // }
-
-            icon.toggleClass('fa-chevron-down fa-chevron-up');
 
             // window.scrollTo(0, currentScrollPosition); // Restore the scroll position
     

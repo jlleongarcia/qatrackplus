@@ -530,7 +530,7 @@
                                                 {% if delim and delim.class == "sublist" %}
                                                     <tr class="group-header" data-group="{{ delim.name|slugify }}">
                                                         <td colspan="{% qa_table_colspan perms %}">
-                                                            <a href="#" class="group-toggle">
+                                                            <a href="#" class="group-toggle" data-toggle="{{ delim.name|slugify }}">
                                                                 <i class="fa fa-chevron-down"></i> {{ delim.name }}
                                                             </a>
                                                         </td>
