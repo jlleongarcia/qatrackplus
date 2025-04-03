@@ -1652,32 +1652,25 @@ require(['jquery', 'lodash', 'moment', 'dropzone', 'autosize', 'cheekycheck', 'i
             $(this).toggleClass('active');
         });
 
-        // $('.group-toggle').click(function(e) {
-        //     e.preventDefault();
-        //     // const currentScrollPosition = window.scrollY; // Store the current scroll position
-        //     var group = $(this).data('toggle');
-        //     var $testRows = $('.test-row[data-group="' + group + '"]');
+        // Show group-header rows by default
+    $('.group-header').each(function() {
+        var groupName = $(this).data('group');
+        $('.test-row[data-group="' + groupName + '"]').addClass('show');
+    });
 
-        //     $testRows.slideToggle();
+    // Handle clicks on group headers
+    $('.group-header').click(function(e) {
+        e.preventDefault(); // Prevent default link behavior
+        var groupName = $(this).data('group');
+        var $testRows = $('.test-row[data-group="' + groupName + '"]');
+        var $icon = $(this).find('.group-toggle i');
 
-        //     // Toggle the icon (chevron-down/chevron-up)
-        //     var $icon = $(this).find('i');
-        //     $icon.toggleClass('fa-chevron-down fa-chevron-up');
+        // Toggle visibility of test rows
+        $testRows.toggleClass('show');
 
-            // Toggle the icon class
-            // if (rows.hasClass('hidden')) {
-            //     icon.removeClass('fa-chevron-down').addClass('fa-chevron-up');
-            // } else {
-            //     icon.removeClass('fa-chevron-up').addClass('fa-chevron-down');
-            // }
-
-            // window.scrollTo(0, currentScrollPosition); // Restore the scroll position
-    
-        // });
-
-        // Hide rows by default
-        // $('tr[data-group]').addClass('hidden');
-        // $('.group-toggle i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        // Toggle icon
+        $icon.toggleClass('fa-chevron-down fa-chevron-right');
+    });
 
     });
 });

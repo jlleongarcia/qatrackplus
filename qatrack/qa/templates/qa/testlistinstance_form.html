@@ -106,16 +106,16 @@
                     <div class="box-header">
                         <h3 class="box-title">
                             <i class="fa fa-phone fa-fw" aria-hidden="true"></i>
-                            Contacts
+                            Contactos
                         </h3>
                     </div>
                     <div class="box-body">
                         <table class="table table-hover table-condensed">
                             <thead>
                                 <tr>
-                                    <th>Contact</th>
-                                    <th>Number or Email</th>
-                                    <th>Contact Description</th>
+                                    <th>Contacto</th>
+                                    <th>Teléfono o correo</th>
+                                    <th>Descripción</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -144,7 +144,7 @@
                                     <i class="fa fa-file-text-o fa-stack-custom-main"></i>
                                     <i class="fa fa-info fa-stack-custom-sub info"></i>
                                 </span>
-                                Description
+                                Descripción
                             </h3>
                         </div>
                         <div class="box-body">
@@ -436,10 +436,10 @@
                             <div class="col-sm-6">
                                 {% if test_list_instance %}
                                     <i class="fa fa-pencil-square-o box-title" aria-hidden="true"></i>
-                                    <h3 class="box-title">Edit {{test_list_instance.unit_test_collection.unit.name}} : {{test_list_instance.test_list.name}}</h3>
+                                    <h3 class="box-title">Editar {{test_list_instance.unit_test_collection.unit.name}} : {{test_list_instance.test_list.name}}</h3>
                                 {% else %}
                                     <i class="fa fa-pencil-square-o box-title" aria-hidden="true"></i>
-                                    <h3 class="box-title">Perform {{unit_test_collection.unit.name}} : {{test_list.name}}</h3>
+                                    <h3 class="box-title">Realizar {{unit_test_collection.unit.name}} : {{test_list.name}}</h3>
                                 {% endif %}
                                 {% if days %}
                                     <div><em>Day {{ current_day }} from cycle : {{ unit_test_collection.name }}</em></div>
@@ -531,7 +531,7 @@
                                                     <tr class="group-header" data-group="{{ delim.name|slugify }}">
                                                         <td colspan="{% qa_table_colspan perms %}">
                                                             <a href="#" class="group-toggle" data-toggle="{{ delim.name|slugify }}">
-                                                                <i class="fa fa-chevron-down"></i> {{ delim.name }}
+                                                                <i class="fa fa-chevron-right"></i> {{ delim.name }}
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -644,7 +644,7 @@
                     <div class="box-header">
                         <h3 class="box-title">
                             <i class="fa fa-commenting-o fa-fw"></i>
-                            Comments
+                            Comentarios
                         </h3>
                     </div>
                     <div class="box-body">

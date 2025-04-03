@@ -153,7 +153,8 @@ td.qa-status {
     margin-left:1px;
 }
 .qa-showcmt{
-    width: 70px;
+    min-width: 70px;
+    width: 100px !important;
     overflow:hidden;
     text-align:center;
 }
@@ -168,14 +169,15 @@ td.qa-status {
   visibility: visible;
 }
 .qa-history{
-    min-width: 325px;
+    max-width: 300px;
+    min-width: 200 px;
 }
 th.qa-history .label {
     color: black;
 }
 th.qa-history div{
 /* hack to fix IE7 min-width*/
-    width:310px;
+    width:300px;
     height:1px;
 }
 .history-value,
@@ -329,8 +331,8 @@ div.sublist-description {
 
 #perform-qa-table > thead > tr > th.qa-category {
     min-width: 120px;
-    width: 200px;
-    max-width: 200px;
+    width: 160px;
+    max-width: 160px;
     padding-left: 15px;
 }
 
@@ -349,9 +351,18 @@ div.sublist-description {
 }
 
 #perform-qa-table > thead > tr > th.qa-history {
-    width: 325px;
+    min-width: 200px;
+    max-width: 300px;
 }
 
+#perform-qa-table > thead > tr > th.qa-skip {
+    min-width: 80px;
+    width: 80px !important;
+}
+
+#perform-qa-table > thead > tr > th.qa-showcmt {
+    width: 100px !important;
+}
 
 #perform-qa-table > tbody > tr > td.qa-category > .error-bar {
     height: calc(100% + 2px);
@@ -609,27 +620,23 @@ td.qa-category .comment-bar {
 }
 
 /* new styles */
-/* .test-row {
-    display: none; /* Initially hide detail rows
+.test-row {
+    display: none; /* Initially hide detail rows */
 }
 
-.group-header {
-    cursor: pointer; /* Indicate that the header is clickable
+.group-header .fa-chevron-right {
+    transition: transform 0.3s ease-in-out; /* Smoothly animate chevron rotation*/
 }
 
-.group-header .fa-chevron-down {
-    transition: transform 0.3s ease; /* Smoothly animate chevron rotation
+.group-header.expanded .fa-chevron-right {
+    transform: rotate(90deg); /* Rotate the chevron when expanded */
 }
 
-.group-header.expanded .fa-chevron-down {
-    transform: rotate(180deg); /* Rotate the chevron when expanded
-}
-
-.test-row.expanded {
+/* .test-row.expanded {
     display: table-row; /* Display detail rows when expanded
 } */
 
-.hidden {
+/* .hidden {
     display: none;
-}
+} */
 
