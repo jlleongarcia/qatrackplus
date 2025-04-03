@@ -132,8 +132,9 @@ input[readonly].qa-input {
     border-right: 1px solid #eeeeee !important;
 }
 */
-.qa-skip {
-    width:100px;
+.qa-table td.qa-skip {
+    min-width: 65px !important;
+    width: 70px;
     text-align: center;
     vertical-align: middle !important;
 }
@@ -355,9 +356,9 @@ div.sublist-description {
     max-width: 300px;
 }
 
-#perform-qa-table > thead > tr > th.qa-skip {
-    min-width: 80px;
-    width: 80px !important;
+#perform-qa-table > thead > tr.header-row > th.qa-skip {
+    min-width: 65px;
+    width: 70px !important;
 }
 
 #perform-qa-table > thead > tr > th.qa-showcmt {
