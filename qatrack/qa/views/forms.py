@@ -378,7 +378,7 @@ class BaseTestListInstanceForm(forms.ModelForm):
             self.fields[field].help_text = settings.DATETIME_HELP
 
         self.fields["status"].widget.attrs["class"] = "form-control select2"
-        self.fields["work_completed"].widget.attrs["placeholder"] = "optional"
+        self.fields["work_completed"].widget.attrs["placeholder"] = "Opcional"
         self.fields['service_events'].widget.attrs.update({'class': 'select2'})
 
         if self.instance.pk:
