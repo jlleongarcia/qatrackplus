@@ -1651,13 +1651,7 @@
                 $('#box-' + toggle).slideToggle();
                 $(this).toggleClass('active');
             });
-    
-            // Show group-header rows by default
-        $('.group-header').each(function() {
-            var groupName = $(this).data('group');
-            $('.test-row[data-group="' + groupName + '"]').addClass('show');
-        });
-    
+        
         // Handle clicks on group headers
         $('.group-header').click(function(e) {
             e.preventDefault(); // Prevent default link behavior
@@ -1670,6 +1664,7 @@
     
             // Toggle icon
             $icon.toggleClass('fa-chevron-down fa-chevron-right');
+            $(this).toggleClass('expanded');
         });
     
         });
