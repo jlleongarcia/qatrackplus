@@ -167,8 +167,12 @@ td.qa-status {
     overflow:hidden;
     text-align:center;
 }
-.qa-reference {
-    width:80px;
+#perform-qa-table > thead > tr > th.qa-reference {
+    width:100px;
+    text-align: center;
+}
+#perform-qa-table > tbody > tr > td.qa-reference {
+    width:100px;
     text-align: right;
 }
 .qa-reference a.ref-tol-link{
