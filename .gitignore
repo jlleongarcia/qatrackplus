@@ -49,7 +49,7 @@ qatrack/media/uploads
 qatrack/media/reports
 qatrack/qa/static/css/site.css
 qatrack/qatrack_core/static/qatrack_core/css/site.css
-qatrack/static
+# qatrack/static
 qatrack/wsgi.py
 questions_*
 src/*.egg-info

@@ -178,7 +178,7 @@ th.qa-history .label {
 }
 th.qa-history div{
 /* hack to fix IE7 min-width*/
-    width:300px;
+    max-width:300px;
     height:1px;
 }
 .history-value,
