@@ -616,7 +616,7 @@ td.qa-category .comment-bar {
     display: none; /* Initially hide detail rows */
 }
 
-.test-row.expanded {
+.test-row.show {
     display: table-row; /* Display detail rows when expanded */
 }
 
