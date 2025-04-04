@@ -566,14 +566,14 @@
                                 self.status.removeClass("btn-info btn-primary btn-danger btn-success");
                                 if (result.errors.length > 0){
                                     self.set_value(null);
-                                    self.status.addClass("btn-danger").text("Failed");
+                                    self.status.addClass("btn-danger").text("Mal");
                                     self.status.attr("title", result.errors[0]);
                                     if (window.console){
                                         console.log(result.errors);
                                     }
                                 }else{
                                     self.set_value(result);
-                                    self.status.addClass("btn-success").text("Success");
+                                    self.status.addClass("btn-success").text("Bien");
                                     self.status.attr("title", result.url);
                                     if (window.console){
                                         console.log(result);
@@ -745,7 +745,7 @@
                     self.status.removeClass("btn-primary btn-info btn-warning btn-danger btn-success");
                     if (response_data.errors.length > 0) {
                         self.set_value(null);
-                        self.status.addClass("btn-danger").text("Failed");
+                        self.status.addClass("btn-danger").text("Mal");
                         self.status.attr("title", response_data.errors[0]);
                         if (window.console){
                             console.log(response_data.errors);
@@ -762,7 +762,7 @@
                                 self.show_comment.click();
                             }
                         }
-                        self.status.addClass("btn-success").text("Success");
+                        self.status.addClass("btn-success").text("Bien");
                         self.status.attr("title", response_data.attachment.url);
     
                         $.Topic("valueChanged").publish();
@@ -965,7 +965,7 @@
     
                                 if (result.error){
                                     ti.status.attr("title", result.error);
-                                    ti.status.addClass("btn-danger").text("Failed");
+                                    ti.status.addClass("btn-danger").text("Mal");
                                     if (window.console){
                                         console.log(result.error);
                                     }

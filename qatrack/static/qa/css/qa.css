@@ -139,6 +139,13 @@ input[readonly].qa-input {
     text-align: center;
 }
 
+#perform-qa-table > tbody > tr > td.qa-skip {
+    min-width: 65px !important;
+    width: 70px;
+    vertical-align: middle;
+    text-align: center;
+}
+
 .qa-status{
     /*width: 90px;*/
     overflow-x:hidden;
@@ -355,12 +362,6 @@ div.sublist-description {
 #perform-qa-table > thead > tr > th.qa-history {
     min-width: 200px;
     max-width: 300px;
-}
-
-#perform-qa-table > thead > tr.header-row > th.qa-skip {
-    min-width: 65px;
-    width: 70px !important;
-    text-align: center !important;
 }
 
 #perform-qa-table > thead > tr > th.qa-showcmt {

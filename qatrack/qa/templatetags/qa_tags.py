@@ -39,7 +39,7 @@ def qa_table_colspan(perms, offset=0):
 def reference_tolerance_span(test, ref, tol):
 
     if ref is None and not (test.is_mult_choice() or test.is_string_type()):
-        return mark_safe("<span>No Ref</span>")
+        return mark_safe("<span>Sin referencia</span>")
 
     if test.is_boolean():
         return mark_safe('<span title="Passing value = %s">%s</span>' % (ref.value_display(), ref.value_display()))

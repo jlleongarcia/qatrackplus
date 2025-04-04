@@ -97,11 +97,11 @@ TOL_HIGH = "tol_high"
 TOL_LOW = "tol_low"
 
 status_displays = settings.TEST_STATUS_DISPLAY
-NOT_DONE_DISP = status_displays.get("not_done", _l("Not Done"))
+NOT_DONE_DISP = status_displays.get("not_done", _l("Sin hacer"))
 OK_DISP = status_displays.get("ok", _l("OK"))
-TOL_DISP = status_displays.get("tolerance", _l("Tolerance"))
+TOL_DISP = status_displays.get("tolerance", _l("Aviso"))
 ACT_DISP = status_displays.get("action", _l("Action"))
-NO_TOL_DISP = status_displays.get("no_tol", _l("No Tol Set"))
+NO_TOL_DISP = status_displays.get("no_tol", _l("Sin tolerancia"))
 
 PASS_FAIL_CHOICES = (
     (NOT_DONE, NOT_DONE_DISP),
