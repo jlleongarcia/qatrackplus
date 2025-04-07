@@ -612,11 +612,19 @@ td.qa-category .comment-bar {
 }
 
 /* new styles */
-.test-row {
+
+/* Target the correct classes for collapsing */
+.test-row,
+.control-group,
+.qa-comment,
+.qa-procedure {
     display: none; /* Initially hide detail rows */
 }
 
-.test-row.show {
+.test-row,
+.control-group.show,
+.qa-comment.show,
+.qa-procedure.show {
     display: table-row; /* Display detail rows when expanded */
 }
 
@@ -644,3 +652,7 @@ td.qa-category .comment-bar {
     transform: rotate(90deg); /* Rotate the chevron when expanded */
 }
 
+/* Accessibility */
+.group-header[aria-expanded="true"] .group-toggle {
+    font-weight: bold; /* Indicate expanded state */
+}

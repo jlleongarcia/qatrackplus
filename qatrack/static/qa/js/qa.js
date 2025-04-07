@@ -1656,15 +1656,22 @@
         $('.group-header').click(function(e) {
             e.preventDefault(); // Prevent default link behavior
             var groupName = $(this).data('group');
-            var $testRows = $('.test-row[data-group="' + groupName + '"]');
+            // var $testRows = $('.test-row[data-group="' + groupName + '"]');
+            var $testRows = $('.test-row[data-group="' + groupName + '"], .control-group[data-group="' + groupName + '"], .qa-comment[data-group="' + groupName + '"], .qa-procedure[data-group="' + groupName + '"]');
             var $icon = $(this).find('.group-toggle i');
     
             // Toggle visibility of test rows
             $testRows.toggleClass('show');
+            $testRows.attr('aria-hidden', function(i, attr){
+                return attr === 'true' ? 'false' : 'true';
+            });
     
             // Toggle icon
             $icon.toggleClass('fa-chevron-down fa-chevron-right');
             $(this).toggleClass('expanded');
+            $(this).attr('aria-expanded', function(i, attr){
+                return attr === 'true' ? 'false' : 'true';
+            });
         });
     
         });
