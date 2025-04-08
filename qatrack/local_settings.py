@@ -114,7 +114,7 @@ REVIEW_DIFF_COL = True
 # default display settings for test statuses
 TEST_STATUS_DISPLAY = {
     'fail': "Fail",
-    'not_done': "Not Done",
+    'not_done': "No realizada",
     'done': "Done",
     'ok': "OK",
     'tolerance': "Tolerance",
@@ -125,7 +125,7 @@ TEST_STATUS_DISPLAY = {
 # default short display settings for test statuses
 TEST_STATUS_DISPLAY_SHORT = {
     'fail': "Fail",
-    'not_done': "Not Done",
+    'not_done': "No realizada",
     'done': "Done",
     'ok': "OK",
     'tolerance': "TOL",

@@ -618,10 +618,10 @@ td.qa-category .comment-bar {
 .control-group,
 .qa-comment,
 .qa-procedure {
-    display: none; /* Initially hide detail rows */
+    display: table-row; /* Initially none to hide detail rows */
 }
 
-.test-row,
+.test-row.show,
 .control-group.show,
 .qa-comment.show,
 .qa-procedure.show {
