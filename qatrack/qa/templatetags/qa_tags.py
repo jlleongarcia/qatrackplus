@@ -17,10 +17,10 @@ register = template.Library()
 def qa_value_form(form, test_list, perms, user, test_info=None, unit_test_collection=None, show_test_list_name=True):
     template = get_template("qa/qavalue_form.html")
     c = {
+        # 'delim': delim,
         "user": user,
         "form": form,
         "perms": perms,
-        # 'delim': delim,
         "test_list": test_list,
         "test_info": test_info,
         'unit_test_collection': unit_test_collection,

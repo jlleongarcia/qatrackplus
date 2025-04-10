@@ -1656,7 +1656,6 @@
         $('.group-header').click(function(e) {
             e.preventDefault(); // Prevent default link behavior
             var groupName = $(this).data('group');
-            // var $testRows = $('.test-row[data-group="' + groupName + '"]');
             var $testRows = $('.test-row[data-group="' + groupName + '"], .control-group[data-group="' + groupName + '"], .qa-comment[data-group="' + groupName + '"], .qa-procedure[data-group="' + groupName + '"]');
             var $icon = $(this).find('.group-toggle i');
     
