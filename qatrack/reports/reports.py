@@ -45,9 +45,6 @@ def format_user(user):
     if not user:
         return ""
 
-    # return user.username if not user.email else mark_safe(
-    #     '%s (<a href="mailto:%s">%s</a>)' % (user.username, user.email, user.email)
-    # )
     full_name = '%s %s' % (user.first_name, user.last_name)
 
     return full_name #user.full_name.strip() no funciona; user.first_name funciona, comprobado

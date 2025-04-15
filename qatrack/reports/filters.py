@@ -87,37 +87,30 @@ class BaseReportFilterSet(django_filters.FilterSet):
 class TestListInstanceFilter(BaseReportFilterSet):
 
     work_completed = RelativeDateRangeFilter(
-        label=_l("Work Completed"),
-        help_text=_l("Dates to include QC data from"),
+        label=_l("Completado"),
+        help_text=_l("Rango de fechas a incluir en el informe"),
     )
 
     unit_test_collection__unit__site = django_filters.filters.ModelMultipleChoiceFilter(
-        label=_l("Site"),
+        label=_l("Lugar"),
         null_label=_l("Other"),
         queryset=umodels.Site.objects.all(),
-        help_text=_l("Use this filter to limit report to one or more sites (leave blank to include all sites)"),
+        help_text=_l("Filtro para elegir la instalación donde se encuentra el equipo (dejar en blanco para incluir todas las instalaciones)"),
     )
 
     unit_test_collection__unit = django_filters.filters.MultipleChoiceFilter(
-        label=_l("Unit"),
-        help_text=_l("Use this filter to limit report to one or more units (leave blank to include all units)"),
+        label=_l("Sala"),
+        help_text=_l("Filtro para elegir la sala donde se encuentra el equipo (dejar en blanco para incluir todas las salas)"),
     )
 
     unit_test_collection__frequency = django_filters.filters.ModelMultipleChoiceFilter(
-        label=_l("Frequency"),
+        label=_l("Frecuencia"),
         queryset=models.Frequency.objects.all(),
         null_label=_l("Ad Hoc"),
-        help_text=_l("Use this filter to limit report to one or more frequencies (leave blank to include all frequencies)"),
+        help_text=_l("Filtro para seleccionar las frecuencias (dejar en blanco para incluir todas las frecuencias)"),
     )
 
-    # unit_test_collection__assigned_to = django_filters.filters.ModelMultipleChoiceFilter(
-    #     label=_l("Assigned To"),
-    #     queryset=models.Group.objects.order_by("name"),
-    #     help_text=_l(
-    #         "Use this filter to limit report to one or more QC performing groups (leave blank to include all groups)"
-    #     ),
-    # )
-
+    
     class Meta:
         model = models.TestListInstance
         fields = [
@@ -135,7 +128,7 @@ class TestListInstanceFilter(BaseReportFilterSet):
         self.form.fields['work_completed'].widget.attrs['class'] = "pastdate"
         self.form.fields['work_completed'].initial = "This Year"
         self.form.fields['unit_test_collection__unit'].choices = unit_site_unit_type_choices()
-        self.form.fields['unit_test_collection__frequency'].initial = "Annual" # no hace nada
+        self.form.fields['unit_test_collection__frequency'].initial = "Anual" # no hace nada
 
 
 class TestListInstanceByUTCFilter(BaseReportFilterSet):
@@ -150,11 +143,6 @@ class TestListInstanceByUTCFilter(BaseReportFilterSet):
         help_text=_l("Select the Unit Test List (Cycle) Assignment)"),
         required=True,
     )
-
-    #unit_test_info__test = django_filters.filters.MultipleChoiceFilter(
-    #    label=_l("Test"),
-    #    help_text=_l("Use this filter to choose which tests to include in the report"),
-    #) # all this cluster is added to choose between test. Doesn't work!!
 
     class Meta:
         model = models.TestListInstance
@@ -171,7 +159,6 @@ class TestListInstanceByUTCFilter(BaseReportFilterSet):
         self.form.fields['work_completed'].widget.attrs['class'] = "pastdate"
         self.form.fields['work_completed'].initial = "This Year"
         self.form.fields['unit_test_collection'].choices = utc_choices()
-        #self.form.fields['unit_test_info__test'].choices = test_category_choices() # added
 
 
 class UnitTestCollectionFilter(BaseReportFilterSet):
@@ -488,7 +475,7 @@ class BaseServiceEventFilter(BaseReportFilterSet):
 
         self.form.fields['unit_service_area__unit'].choices = unit_site_unit_type_choices(serviceable_only=True)
         self.form.fields['datetime_service'].widget.attrs['class'] = "pastdate"
-        self.form.fields['datetime_service'].initial = "Last 365 days"
+        self.form.fields['datetime_service'].initial = "This Year"
 
 
 class ServiceEventSummaryFilter(BaseServiceEventFilter):
