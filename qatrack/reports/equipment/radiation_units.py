@@ -19,7 +19,7 @@ class RadiationUnitsDetailsReport(BaseReport):
     name = _l("Radiation Units Details")
     filter_class = filters.RadiationUnitsFilter
     description = mark_safe(_l(
-        "This report lists all Radiation Units for selected sites and rooms."
+        "This report lists all Radiation Units for selected sites and rooms. "
         "Leave filters blank to include all."
     ))
 
@@ -37,7 +37,7 @@ class RadiationUnitsDetailsReport(BaseReport):
         """
         # Pre-fetch related fields used in the template for efficiency
         qs = u_models.Unit.objects.select_related(
-            'site', 'type', 'location'
+            'site', 'type'
         ).order_by('site__name', 'name') # Order for consistent display
         return qs
 
@@ -48,6 +48,7 @@ class RadiationUnitsDetailsReport(BaseReport):
         context['units'] = self.filter_set.qs
         context['report_title'] = self.name
         context['description'] = self.description
+        context['settings'] = settings
         return context
 
     def get_filename(self, report_format):

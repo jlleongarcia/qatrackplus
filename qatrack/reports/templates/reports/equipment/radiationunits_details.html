@@ -5,49 +5,43 @@
 
 {% block report_title %}{{ report_title }}{% endblock report_title %}
 
-{% block report_description %}
+<!-- {% block report_description %}
     <p>{{ description }}</p>
 {% endblock report_description %}
 
 {% block filter_details %}
     {% include "reports/filter_details.html" with filter_details=report_details only %}
-{% endblock filter_details %}
+{% endblock filter_details %} -->
 
 
-{% block report_content %}
-    {% if units %}
-        {# Use standard Bootstrap table styling #}
-        <table class="table table-bordered table-striped table-condensed">
-            <thead>
-                <tr>
-                    <th>{% trans "Site" %}</th>
-                    <th>{% trans "Unit Name" %}</th>
-                    <th>{% trans "Type" %}</th>
-                    <th>{% trans "Serial Number" %}</th>
-                    <th>{% trans "Location" %}</th>
-                    <th>{% trans "Install Date" %}</th>
-                    <th>{% trans "Active" %}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for unit in units %}
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <table class="table table-bordered table-striped table-condensed">
+                <thead>
                     <tr>
-                        {# Use default_if_none for fields that might be empty #}
-                        <td>{{ unit.site.name|default_if_none:_("Other") }}</td>
-                        <td>{{ unit.name }}</td>
-                        <td>{{ unit.type.name|default_if_none:"" }}</td>
-                        <td>{{ unit.serial_number|default_if_none:"" }}</td>
-                        <td>{{ unit.location.name|default_if_none:"" }}</td>
-                        {# Format the date according to Django settings #}
-                        <td>{{ unit.install_date|date:settings.DATE_FORMAT|default_if_none:"" }}</td>
-                        {# Display Yes/No for boolean field #}
-                        <td>{{ unit.active|yesno|capfirst }}</td>
+                        <th>{% trans "Lugar" %}</th>
+                        <th>{% trans "Máquina" %}</th>
+                        <th>{% trans "Tipo" %}</th>
+                        <th>{% trans "Número de serie" %}</th>
+                        <th>{% trans "Fecha de aceptación" %}</th>
+                        <th>{% trans "En activo" %}</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p class="alert alert-info">{% trans "No radiation units found matching the selected criteria." %}</p>
-    {% endif %}
-{% endblock report_content %}
+                </thead>
+                <tbody>
+                    {% for unit in units %}
+                        <tr>
+                            <td>{{ unit.site.name|default_if_none:_("Other") }}</td>
+                            <td>{{ unit.name }}</td>
+                            <td>{{ unit.type.name|default_if_none:"" }}</td>
+                            <td>{{ unit.serial_number|default_if_none:"" }}</td>
+                            <td>{{ unit.acceptance_date|date:settings.DATE_FORMAT|default_if_none:"" }}</td>
+                            <td>{{ unit.active|yesno|capfirst }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
 
