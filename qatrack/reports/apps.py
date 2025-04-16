@@ -17,3 +17,4 @@ class ReportsConfig(AppConfig):
 
     def ready(self):
         post_migrate.connect(do_scheduling, sender=self)
+        from . import equipment # temporal solution till I guess how to correctly add it to the REPORT_REGISTRY

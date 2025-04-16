@@ -118,7 +118,6 @@ class TestListInstanceFilter(BaseReportFilterSet):
             "unit_test_collection__unit__site",
             "unit_test_collection__unit",
             'unit_test_collection__frequency',
-        #    'unit_test_collection__assigned_to',
         ]
 
     def __init__(self, *args, **kwargs):
@@ -688,6 +687,46 @@ class BaseFaultFilter(BaseReportFilterSet):
         self.form.fields['occurred'].widget.attrs['class'] = "pastdate"
         self.form.fields['occurred'].initial = "Last 365 days"
 
+class RadiationUnitsFilter(BaseReportFilterSet):
+
+    site = django_filters.filters.ModelMultipleChoiceFilter(
+        label=_l("Lugar"),
+        null_label=_l("Other"),
+        field_name='site',
+        queryset=umodels.Site.objects.all(),
+        help_text=_l("Filtro para elegir la instalación donde se encuentra el equipo (dejar en blanco para incluir todas las instalaciones)"),
+    )
+
+    unit = django_filters.filters.MultipleChoiceFilter(
+        label=_l("Sala"),
+        field_name='pk',
+        help_text=_l("Filtro para elegir la sala donde se encuentra el equipo (dejar en blanco para incluir todas las salas)"),
+    )
+
+    
+    class Meta:
+        model = umodels.Unit
+        fields = [
+            "site",
+            "unit",
+        ]
+
+    def __init__(self, *args, **kwargs):
+
+        super().__init__(*args, **kwargs)
+
+        self.form.fields['unit'].choices = unit_site_unit_type_choices()
+    
+    # Optional: Add methods to display filter choices nicely in the report header
+    def get_site_details(self, val):
+        sites = [x.name if x else _("Other") for x in val]
+        return (_("Site(s)"), ", ".join(sites))
+
+    def get_unit_details(self, val):
+        # Fetch units by pk to display names correctly
+        units = umodels.Unit.objects.select_related("site").filter(pk__in=val)
+        units_display = [f"{u.site.name if u.site else _('Other')} - {u.name}" for u in units]
+        return (_("Unit(s)"), ', '.join(units_display))
 
 class FaultSummaryFilter(BaseFaultFilter):
     pass
