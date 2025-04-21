@@ -1,17 +1,9 @@
-<!-- {# templates/reports/equipment/radiationunits_details.html #} -->
 {% extends base_template %}
 {% load i18n %}
 {% load qa_tags %}
-
-{% block report_title %}{{ report_title }}{% endblock report_title %}
-
-<!-- {% block report_description %}
-    <p>{{ description }}</p>
-{% endblock report_description %}
-
-{% block filter_details %}
-    {% include "reports/filter_details.html" with filter_details=report_details only %}
-{% endblock filter_details %} -->
+{% load qatrack_tags %}
+{% load attach_tags %}
+{% load comments %}
 
 
 {% block content %}
@@ -24,6 +16,7 @@
                         <th>{% trans "Máquina" %}</th>
                         <th>{% trans "Tipo" %}</th>
                         <th>{% trans "Número de serie" %}</th>
+                        <th>{% trans "Número de serie del tubo" %}</th>
                         <th>{% trans "Fecha de aceptación" %}</th>
                         <th>{% trans "En activo" %}</th>
                     </tr>
@@ -31,12 +24,13 @@
                 <tbody>
                     {% for unit in units %}
                         <tr>
-                            <td>{{ unit.site.name|default_if_none:_("Other") }}</td>
+                            <td>{{ unit.site.name }}</td>
                             <td>{{ unit.name }}</td>
-                            <td>{{ unit.type.name|default_if_none:"" }}</td>
-                            <td>{{ unit.serial_number|default_if_none:"" }}</td>
-                            <td>{{ unit.acceptance_date|date:settings.DATE_FORMAT|default_if_none:"" }}</td>
-                            <td>{{ unit.active|yesno|capfirst }}</td>
+                            <td>{{ unit.type }}</td>
+                            <td>{{ unit.serial_number }}</td>
+                            <td>{{ unit.tube_serial_number }}</td>
+                            <td>{{ unit.date_acceptance|date:settings.DATE_FORMAT }}</td>
+                            <td>{{ unit.active|yesno:"Sí,No" }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
