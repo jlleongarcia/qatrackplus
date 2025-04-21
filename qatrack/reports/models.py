@@ -33,8 +33,8 @@ class SavedReport(models.Model):
     )
 
     include_signature = models.BooleanField(
-        verbose_name=_l("Signature"),
-        help_text=_l("Signature field at end of PDFs?"),
+        verbose_name=_l("Firma"),
+        help_text=_l("¿Quieres firma al final del PDF?"),
         default=True,
     )
 
@@ -42,7 +42,7 @@ class SavedReport(models.Model):
 
     visible_to = models.ManyToManyField(
         Group,
-        help_text=_l("Select groups who will be able to view and run this report. Leave blank to keep it private."),
+        help_text=_l("Selecciona los grupos que pueden ver este informe. Dejar en blanco para mantenerlo privado."),
         blank=True,
     )
 
@@ -109,10 +109,10 @@ class ReportNote(models.Model):
     report = models.ForeignKey(SavedReport, on_delete=models.CASCADE)
 
     heading = models.TextField(
-        help_text=_l("Add a heading for this note"),
+        help_text=_l("Añade un título para esta nota"),
     )
     content = models.TextField(
-        help_text=_l("Add the content of this note"),
+        help_text=_l("Escribe el contenido de la nota"),
         blank=True,
     )
 

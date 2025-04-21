@@ -6,6 +6,17 @@
 {% load comments %}
 
 
+<!-- {% block head %}
+    {{ block.super }} {# Include styles/scripts from the base template's head block #}
+    <style>
+        /* Target header cells within the table head */
+        thead th {
+            vertical-align: middle;
+        }
+    </style>
+{% endblock %} does not work
+ -->
+
 {% block content %}
     <div class="row">
         <div class="col-xs-12">
@@ -24,7 +35,7 @@
                 <tbody>
                     {% for unit in units %}
                         <tr>
-                            <td>{{ unit.site.name }}</td>
+                            <td>{{ unit.site.name }} - {{unit.site.slug}}</td>
                             <td>{{ unit.name }}</td>
                             <td>{{ unit.type }}</td>
                             <td>{{ unit.serial_number }}</td>

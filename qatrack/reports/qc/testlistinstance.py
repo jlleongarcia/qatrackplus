@@ -212,14 +212,6 @@ class TestListInstanceDetailsReport(BaseReport):
 
         context = super().get_context()
 
-        #selected_tests = self.request.GET.getlist('selected_tests')  # Get tests from query parameters
-        #context['selected_tests'] = selected_tests  # Pass selected tests to the template
-        #context['all_tests'] = models.Test.objects.all()  # Pass all tests for selection options
-
-        #test_queryset = models.TestInstance.objects.order_by("order")
-        #if selected_tests:
-        #    test_queryset = test_queryset.filter(unit_test_info__test__name__in=selected_tests) # cluster added
-
         qs = self.filter_set.qs.select_related(
             "created_by",
             "modified_by",
@@ -337,16 +329,12 @@ class TestListInstanceDetailsReport(BaseReport):
                 _("Test"),
                 _("Value"),
                 _("Reference"),
-                #_("Tolerance"),
             ]
-            #if settings.REVIEW_DIFF_COL:
-            #    headers.append("Difference")
+
             headers.extend([
-                #_("Pass/Fail"),
                 _("Review Status"),
                 _("Work Completed"),
                 _("Comment"),
-                #_("Attachments"),
             ])
             rows.append(headers)
 
@@ -355,18 +343,10 @@ class TestListInstanceDetailsReport(BaseReport):
                     ti.unit_test_info.test.name,
                     ti.value_display(coerce_numerical=False),
                     ti.reference.value_display() if ti.reference else "",
-                    #ti.tolerance.name if ti.tolerance else "",
                     ti.status.name,
                     ti.comment,
                 ]
-                #if settings.REVIEW_DIFF_COL and not ti.string_value:
-                #    row.append(ti.diff_display())
-                #row.extend([
-                    #ti.get_pass_fail_display(),
-                    #ti.status.name,
-                    #format_user(ti.created_by),
-                    #ti.comment,
-                #])
+
                 for a in ti.attachment_set.all():
                     row.append(self.make_url(a.attachment.url, plain=True))
 
