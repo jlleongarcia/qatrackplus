@@ -117,9 +117,11 @@ class ReportNote(models.Model):
     report = models.ForeignKey(SavedReport, on_delete=models.CASCADE)
 
     heading = models.TextField(
+        verbose_name=_l("Título"),
         help_text=_l("Añade un título para esta nota"),
     )
     content = models.TextField(
+        verbose_name=_l("Contenido"),
         help_text=_l("Escribe el contenido de la nota"),
         blank=True,
     )

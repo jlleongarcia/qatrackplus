@@ -77,7 +77,7 @@
                     <div class="input-group">
                       {% render_field f.heading class+="form-control input-sm" %}
                       <div class="input-group-btn">
-                        <button id="id_reportnote_set-remove-__prefix__" type="button" class="btn btn-primary btn-sm" title="{% trans "Remove Comment" %}">
+                        <button id="id_reportnote_set-remove-__prefix__" type="button" class="btn btn-primary btn-sm" title="{% trans "Eliminar comentario" %}">
                           <i class="fa fa-trash"></i>
                         </button>
                       </div>
@@ -170,7 +170,7 @@
                   {% trans "Notas" %}
                 </label>
                 <div class="col-sm-8">
-                    <button id="add-note" type="button" class="btn btn-default btn-xs pull-right btn-flat" title="{% trans "Add a note to this report" %}">
+                    <button id="add-note" type="button" class="btn btn-default btn-xs pull-right btn-flat" title="{% trans "Añade un comentario en el informe" %}">
                       <i class="fa fa-stack fa-fw">
                         <i class="fa fa-sticky-note-o fa-stack-custom-main"></i>
                         <i class="fa fa-plus fa-stack-custom-sub upper-1"></i>
@@ -248,7 +248,7 @@
                 <th>{% trans "Informe" %}</th>
                 <th>{% trans "Creador" %}</th>
                 <th>
-                  <i class="fa fa-stack fa-fw" title="Report Schedule">
+                  <i class="fa fa-stack fa-fw" title="Programar informe">
                     <i class="fa fa-calendar fa-stack-custom-main"></i>
                     <i class="fa fa-clock-o fa-stack-custom-sub"></i>
                   </i>
@@ -280,7 +280,7 @@
               </div>
                 <div>
                   <b>
-                      Loading Report
+                      Cargando informe
                   </b>
                 </div>
             </div>
@@ -344,9 +344,9 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button id="clear-schedule" type="button" class="btn btn-primary btn-flat pull-left" title="{% trans "Click to clear this reports schedule" %}" >
+        <button id="clear-schedule" type="button" class="btn btn-primary btn-flat pull-left" title="{% trans "Clicar para eliminar programación" %}" >
           <i class="fa fa-trash"></i>
-          {% trans "Limpiar programación" %}
+          {% trans "Eliminar programación" %}
         </button>
 
         <button id="schedule" type="button" class="btn btn-primary btn-flat">
