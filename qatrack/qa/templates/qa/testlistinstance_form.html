@@ -503,24 +503,20 @@
                                             <th class="qa-category">Nombre de la prueba</th>
                                             <th class="qa-showproc qa-name">Test</th>
                                             <th class="qa-value">Valor</th>
-                                            <th class="qa-skip">No aplica</th>
+                                            {% if perms.qa.can_view_ref_tol %}
+                                                <th class="qa-reference">Referencia</th>
+                                            {% endif %}
                                             <th class="qa-status">Estado</th>
-                                            <th class="qa-showcmt">Comentarios</th>
-                                            {% if perms.qa.can_view_ref_tol or perms.qa.can_view_history %}
-                                                {% if perms.qa.can_view_ref_tol %}
-                                                    <th class="qa-reference">Referencia</th>
-                                                {% endif %}
-                                                {% if perms.qa.can_view_history %}
-                                                    <th class="qa-history">Histórico<br/>
-                                                        {% for tli_url, d in history_dates %}
-                                                          <a href="{{ tli_url}}" title="{% blocktrans %}Click to view this test list instance performed at {{ d }}{% endblocktrans %}">
+                                            <th class="qa-skip">No aplica</th>
+                                            <th class="qa-showcmt">Comentarios</th>                                                
+                                            {% if perms.qa.can_view_history %}
+                                                <th class="qa-history">Histórico<br/>
+                                                    {% for tli_url, d in history_dates %}
+                                                        <a href="{{ tli_url}}" title="{% blocktrans %}Click to view this test list instance performed at {{ d }}{% endblocktrans %}">
                                                             <span class="label history-label">{{d|date:"dMy"}}</span>
-                                                          </a>
-                                                        {% endfor %}
-                                                    <div></div></th>
-                                                {% endif %}
-{#                                            {% else %}#}
-{#                                                <th>&nbsp;<div></div></th>#}
+                                                        </a>
+                                                    {% endfor %}
+                                                <div></div></th>
                                             {% endif %}
                                         </tr>
                                     </thead>

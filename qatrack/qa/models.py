@@ -1915,7 +1915,7 @@ class TestInstance(models.Model):
         ),
     )
 
-    skipped = models.BooleanField(help_text=_l("Was this test skipped for some reason (add comment)"), default=False)
+    skipped = models.BooleanField(help_text=_l("Clica si por algún motivo no se realizó la prueba (puedes añadir un comentario)"), default=False)
     comment = models.TextField(help_text=_l("Add a comment to this test"), null=True, blank=True)
 
     # reference used

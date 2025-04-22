@@ -178,7 +178,7 @@ class CreateTestInstanceForm(TestInstanceWidgetsMixin, forms.Form):
     date_value = forms.DateField(required=False, widget=forms.widgets.TextInput(attrs={"class": "qa-input"}))
     datetime_value = forms.DateTimeField(required=False, widget=forms.widgets.TextInput(attrs={"class": "qa-input"}))
 
-    skipped = forms.BooleanField(required=False, help_text=_l("Was this test skipped for some reason (add comment)"))
+    skipped = forms.BooleanField(required=False, help_text=_l("Clica si por algún motivo no se realizó la prueba (puedes añadir un comentario)"))
     comment = forms.CharField(widget=forms.Textarea, required=False, help_text=_l("Show or hide comment field"))
 
     user_attached = forms.CharField(widget=forms.HiddenInput, required=False)
