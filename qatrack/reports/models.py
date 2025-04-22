@@ -22,14 +22,21 @@ class SavedReport(models.Model):
 
     FORMATS = [('pdf', _l('PDF')), ('xlsx', 'Excel'), ("csv", _l("CSV"))]
 
-    title = models.CharField(max_length=255,)
+    title = models.CharField(
+        max_length=255,
+        verbose_name=_l("Título"),
+    )
 
-    report_type = models.CharField(max_length=128)
+    report_type = models.CharField(
+        max_length=128,
+        verbose_name=_l("Tipo de informe"),
+    )
 
     report_format = models.CharField(
         max_length=8,
         choices=FORMATS,
         default="pdf",
+        verbose_name=_l("Formato"),
     )
 
     include_signature = models.BooleanField(
@@ -42,6 +49,7 @@ class SavedReport(models.Model):
 
     visible_to = models.ManyToManyField(
         Group,
+        verbose_name=_l("Visible para"),
         help_text=_l("Selecciona los grupos que pueden ver este informe. Dejar en blanco para mantenerlo privado."),
         blank=True,
     )

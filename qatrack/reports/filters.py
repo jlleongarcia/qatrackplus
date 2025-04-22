@@ -691,7 +691,6 @@ class RadiationUnitsFilter(BaseReportFilterSet):
 
     site = django_filters.filters.ModelMultipleChoiceFilter(
         label=_l("Lugar"),
-        null_label=_l("Other"),
         field_name='site',
         queryset=umodels.Site.objects.all(),
         help_text=_l("Filtro para elegir la instalación donde se encuentra el equipo (dejar en blanco para incluir todas las instalaciones)"),
@@ -702,7 +701,6 @@ class RadiationUnitsFilter(BaseReportFilterSet):
         field_name='pk',
         help_text=_l("Filtro para elegir la sala donde se encuentra el equipo (dejar en blanco para incluir todas las salas)"),
     )
-
     
     class Meta:
         model = umodels.Unit
