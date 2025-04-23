@@ -270,7 +270,7 @@
 
                         {% if perms.qa.can_review_non_visible_tli %}
                           <li>
-                            <a href="{% url "overview" %}" title="{% trans "View a summary of the status of the QC program" %}">
+                            <a href="{% url "overview" %}" title="{% trans "Ver resumen del estado de los controles de calidad" %}">
                               <i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"></i>
                               {% trans "Todos" %}
                             </a>
@@ -278,25 +278,25 @@
                         {% endif %}
 
                         <li>
-                          <a href="{% url "overview_user" %}" title="{% trans "View a summary of the status of the QC program (QC for groups you belong to)" %}">
+                          <a href="{% url "overview_user" %}" title="{% trans "Ver resumen del estado de los controles de calidad para tu grupo" %}">
                             <i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"></i>
-                            {% trans "Overview" %}{% if perms.qa.can_review_non_visible_tli %} - {% trans "Your Groups" %}{% endif %}
+                            {% trans "Todos" %}{% if perms.qa.can_review_non_visible_tli %} - {% trans "Tus grupos" %}{% endif %}
                           </a>
                         </li>
 
                         {% if perms.qa.can_review_non_visible_tli %}
                           <li>
-                            <a href="{% url "overview_due_dates" %}" title="{% trans "View QC grouped by due date" %}">
+                            <a href="{% url "overview_due_dates" %}" title="{% trans "Ver controles de calidad por fecha de vencimiento" %}">
                               <i class="fa fa-calendar-check-o fa-lg fa-fw" aria-hidden="true"></i>
-                              {% trans "By Due Status - All" %}
+                              {% trans "Todos los pendientes" %}
                             </a>
                           </li>
                         {% endif %}
 
                         <li>
-                          <a href="{% url "overview_due_dates_user" %}" title="{% trans "View QC for groups you belong to (QC for groups you belong to)" %}">
+                          <a href="{% url "overview_due_dates_user" %}" title="{% trans "Ver controles de calidad para tu grupo por fecha de vencimiento" %}">
                             <i class="fa fa-calendar-check-o fa-lg fa-fw" aria-hidden="true"></i>
-                            {% trans "By Due Status" %}{% if perms.qa.can_review_non_visible_tli %} - {% trans "Your Groups" %}{% endif %}
+                            {% trans "Todos los pendientes" %}{% if perms.qa.can_review_non_visible_tli %} - {% trans "Tus grupos" %}{% endif %}
                           </a>
                         </li>
 
@@ -306,47 +306,47 @@
 
                         <li class="divider"></li>
 
-                        <li class="nav-header">{% trans "QC Sessions" %}</li>
+                        <li class="nav-header">{% trans "Sesiones de control de calidad" %}</li>
 
                         {% if perms.qa.can_review_non_visible_tli %}
                           <li>
-                            <a href="{% url  "unreviewed" %}" title="{% blocktrans %}There are currently {{ UNREVIEWED }} QC Sessions waiting to be reviewed {% endblocktrans %}">
+                            <a href="{% url  "unreviewed" %}" title="{% blocktrans %}Actualmente hay {{ UNREVIEWED }} sesiones de control de calidad sin revisar {% endblocktrans %}">
                               <i class="fa fa-question-circle fa-lg fa-fw" aria-hidden="true"></i>
-                              <span title="{% blocktrans %}There are currently {{ UNREVIEWED }} QC Sessions waiting to be reviewed {% endblocktrans %}" class="label {% if UNREVIEWED == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
+                              <span title="{% blocktrans %}Actualmente hay {{ UNREVIEWED }} sesiones de control de calidad sin revisar {% endblocktrans %}" class="label {% if UNREVIEWED == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
                                   <span class="total-unreviewed-count">{{ UNREVIEWED }}</span>
                               </span>
-                              {% trans "Unreviewed - All Groups" %}
+                              {% trans "Sin revisar - Todos los grupos" %}
                             </a>
                           </li>
                         {% endif %}
                         <li>
-                          <a href="{% url  "unreviewed_visible_to" %}" title="{% blocktrans %}There are currently {{ USERS_UNREVIEWED }} QC Sessions waiting to be reviewed (QC for groups you belong to){% endblocktrans %}">
+                          <a href="{% url  "unreviewed_visible_to" %}" title="{% blocktrans %}Actualmente hay {{ USERS_UNREVIEWED }} sesiones de control de calidad sin revisar para tu grupo {% endblocktrans %}">
                             <i class="fa fa-question-circle fa-lg fa-fw" aria-hidden="true"></i>
                             <span
-                              title="{% blocktrans %}There are currently {{ USERS_UNREVIEWED }} QC Sessions visible to your groups waiting to be reviewed{% endblocktrans %}"
+                              title="{% blocktrans %}Actualmente hay {{ USERS_UNREVIEWED }} sesiones de control de calidad sin revisar para tu grupo{% endblocktrans %}"
                               class="label {% if USERS_UNREVIEWED == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper"
                             >
                               <span class="total-unreviewed-count">{{ USERS_UNREVIEWED }}</span>
                             </span>
-                            {% trans "Unreviewed" %}{% if perms.qa.can_review_non_visible_tli %} - {% trans "Your Groups" %}{% endif %}
+                            {% trans "Sin revisar" %}{% if perms.qa.can_review_non_visible_tli %} - {% trans "Tus grupos" %}{% endif %}
                           </a>
                         </li>
                         <li>
                           <a href="{% url 'rtsqa_list_unreviewed' %}" title="">
                             <i class="fa fa-question-circle fa-lg fa-fw" aria-hidden="true"></i>
                             <span
-                              title="{% blocktrans %}There are currently {{ SE_RTS_UNREVIEWED_QA_COUNT }} unreviewed return to service sessions{% endblocktrans %}"
+                              title="{% blocktrans %}Actualmente hay {{ SE_RTS_UNREVIEWED_QA_COUNT }} pruebas de aceptación sin revisar{% endblocktrans %}"
                               class="label {% if SE_RTS_UNREVIEWED_QA_COUNT == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper"
                             >
                               <span class="total-unreviewed-count">{{ SE_RTS_UNREVIEWED_QA_COUNT }}</span>
                             </span>
-                            {% trans "Unreviewed Return To Service" %}
+                            {% trans "Pruebas de aceptación sin revisar" %}
                           </a>
                         </li>
                         <li>
                           <a href="{% url  "choose_group_visible" %}">
                             <i class="fa fa-question-circle fa-lg fa-fw" aria-hidden="true"></i>
-                            {% trans "Unreviewed By Visible To Group" %}
+                            {% trans "Sin revisar por grupos" %}
                           </a>
                         </li>
                       {% endif %}
@@ -355,53 +355,53 @@
 
                         <li class="divider"></li>
 
-                        <li class="nav-header">{% trans "Test Lists" %}</li>
+                        <li class="nav-header">{% trans "Listas de pruebas" %}</li>
 
                         {% if perms.qa.can_review_non_visible_tli %}
                           <li class="hover-parent">
-                            <a href="{% url "review_all" %}" title="{% trans "View all test lists." %}">
+                            <a href="{% url "review_all" %}" title="{% trans "Ver todas las listas de pruebas" %}">
                               <i class="fa fa-users fa-lg fa-fw hover-sub-info" aria-hidden="true"></i>
-                              {% trans "All Groups Test Lists" %}
+                              {% trans "Todas las listas de pruebas" %}
                             </a>
                           </li>
                         {% endif %}
 
                         <li class="hover-parent">
-                          <a href="{% url "review_your_all" %}" title="{% trans "View all your groups test lists." %}">
+                          <a href="{% url "review_your_all" %}" title="{% trans "Ver todas las listas de pruebas para tu grupo" %}">
                             <i class="fa fa-stack fa-lg fa-fw">
                               <i class="fa fa-users fa-stack-custom-main"></i>
                               <i class="fa fa-user fa-stack-custom-main hover-sub-info down-2"></i>
                             </i>
-                            {% trans "Your Groups Test Lists" %}
+                            {% trans "Listas de pruebas de tu grupo" %}
                           </a>
                         </li>
 
                         <li>
-                          <a href="{% url "choose_review_unit" %}" title="{% trans "Choose a unit to review qa lists for." %}">
+                          <a href="{% url "choose_review_unit" %}" title="{% trans "Elije una unidad para revisar" %}">
                             <i class="fa fa-cubes fa-lg fa-fw" aria-hidden="true"></i>
-                            {% trans "Your Test Lists By Unit" %}
+                            {% trans "Tus listas de pruebas por unidad" %}
                           </a>
                         </li>
 
                         <li>
-                          <a href="{% url "choose_review_frequency" %}" title="{% trans "Choose a frequency to review qa lists for." %}">
+                          <a href="{% url "choose_review_frequency" %}" title="{% trans "Elije una frecuencia para revisar" %}">
                             <i class="fa fa-clock-o fa-lg fa-fw" aria-hidden="true"></i>
-                            {% trans "Your Test Lists By Frequency" %}
+                            {% trans "Tus listas de pruebas por frecuencia" %}
                           </a>
                         </li>
 
                         {% if perms.qa.can_review_non_visible_tli %}
                           <li>
-                            <a href="{% url "review_inactive" %}" title="{% trans "View all inactive test lists." %}">
+                            <a href="{% url "review_inactive" %}" title="{% trans "Ver todas las listas de pruebas inactivas" %}">
                               <i class="fa fa-file fa-lg fa-fw" aria-hidden="true"></i>
-                              {% trans "All Groups Inactive Test Lists" %}
+                              {% trans "Listas de pruebas inactivas" %}
                             </a>
                           </li>
                         {% else %}
                           <li>
-                            <a href="{% url "review_your_inactive" %}" title="{% trans "View all your inactive test lists." %}">
+                            <a href="{% url "review_your_inactive" %}" title="{% trans "Ver todas tus listas de pruebas inactivas" %}">
                               <i class="fa fa-file fa-lg fa-fw" aria-hidden="true"></i>
-                              {% trans "Your Groups Inactive Test Lists" %}
+                              {% trans "Listas de pruebas inactivas de tu grupo" %}
                             </a>
                           </li>
                         {% endif %}
@@ -414,10 +414,10 @@
                 {% if perms.service_log.add_serviceevent or perms.service_log.view_serviceevent or perms.service_log.review_serviceevent or perms.qa.can_review or service_log.view_returntoserviceqa or perms.service_log.perform_returntoserviceqa or perms.parts.add_part or perms.parts.view_part %}
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      {% trans "Service Log" %}
+                      {% trans "Registro de servicio" %}
 
                       <span
-                        title="{% blocktrans %}There are currently {{ SL_NOTIFICATION_TOTAL }} Service Log Action Items {% endblocktrans %}"
+                        title="{% blocktrans %}Actualmente hay {{ SL_NOTIFICATION_TOTAL }} tareas pendientes{% endblocktrans %}"
                         class="label {% if SL_NOTIFICATION_TOTAL == 0%}label-success{% else %}label-warning{% endif %} unreviewed-count-wrapper"
                       >
                         {{ SL_NOTIFICATION_TOTAL }}
@@ -427,9 +427,9 @@
                     <ul class="dropdown-menu" role="menu">
 
                       <li>
-                        <a href="{% url "sl_dash" %}" title="{% trans "Service Log dashboard" %}">
+                        <a href="{% url "sl_dash" %}" title="{% trans "Panel de registro de servicio" %}">
                           <i class="fa fa-th fa-lg fa-fw" aria-hidden="true"></i>
-                          {% trans "Service Log Dashboard" %}
+                          {% trans "Panel de registro de servicio" %}
                         </a>
                       </li>
 
@@ -437,92 +437,92 @@
 
                         <li class="divider"></li>
 
-                        <li class="nav-header">{% trans "Service Events" %}</li>
+                        <li class="nav-header">{% trans "Eventos de servicio" %}</li>
 
                         {% if perms.service_log.add_serviceevent %}
-                          <li class="hover-parent"><a href="{% url "sl_new" %}" title="{% trans "Create a new service event" %}">
+                          <li class="hover-parent"><a href="{% url "sl_new" %}" title="{% trans "Crear un nuevo evento de servicio" %}">
                             <i class="fa fa-stack fa-lg fa-fw">
                               <i class="fa fa-wrench fa-stack-custom-main"></i>
                               <i class="fa fa-plus fa-stack-custom-sub upper-left hover-sub-success"></i>
                             </i>
-                            {% trans "Enter New Service Event" %}
+                            {% trans "Crear un nuevo evento de servicio" %}
                             </a>
                           </li>
                           <li>
-                            <a href="{% url "sl_unit_new" %}" title="{% trans "Create a new service event for a unit" %}">
+                            <a href="{% url "sl_unit_new" %}" title="{% trans "Crear un nuevo evento de servicio para una unidad específica" %}">
                               <i class="fa fa-cubes fa-lg fa-fw" aria-hidden="true"></i>
-                              {% trans "Choose Unit For New Service Event" %}
+                              {% trans "Elije una unidad para crear un nuevo evento de servicio" %}
                             </a>
                           </li>
                         {% endif %}
                         {% if perms.service_log.view_serviceevent %}
                           <li class="hover-parent">
-                            <a href="{% url "sl_list_all" %}" title="{% trans "View service events for a unit" %}">
+                            <a href="{% url "sl_list_all" %}" title="{% trans "Ver los eventos de servicio para una unidad" %}">
                               <i class="fa fa-stack fa-lg fa-fw">
                                 <i class="fa fa-wrench fa-stack-custom-main"></i>
                                 <i class="fa fa-wrench fa-flip-horizontal left--5 fa-stack-custom-main "></i>
                               </i>
-                              {% trans "View All Service Events" %}
+                              {% trans "Ver todos los eventos de servicio" %}
                             </a>
                           </li>
 
                           {% if DEFAULT_SE_STATUS %}
                             <li class="hover-parent">
-                              <a href="{% url 'sl_list_by_status' pk=DEFAULT_SE_STATUS.id %}" title="{% blocktrans with service_event_status=DEFAULT_SE_STATUS.name %}View service events that are {{ service_event_status }}{% endblocktrans %}">
+                              <a href="{% url 'sl_list_by_status' pk=DEFAULT_SE_STATUS.id %}" title="{% blocktrans with service_event_status=DEFAULT_SE_STATUS.name %}Ver los eventos de servicio en estado {{ service_event_status }}{% endblocktrans %}">
                                 <i class="fa fa-stack fa-lg fa-fw">
                                     <i class="fa fa-wrench fa-stack-custom-main hover-sub-not" style="color: {{ DEFAULT_SE_STATUS.colour }};"></i>
                                     <i class="fa fa-wrench fa-flip-horizontal left--5 fa-stack-custom-main hover-sub-not" style="color: {{ DEFAULT_SE_STATUS.colour }};"></i>
                                 </i>
-                                View {{ DEFAULT_SE_STATUS.name }}
+                                Ver {{ DEFAULT_SE_STATUS.name }}
                             </a></li>
                           {% endif %}
 
                         {% endif %}
                         {% if perms.service_log.review_serviceevent %}
                           <li class="hover-parent">
-                            <a href="{% url 'sl_list_review_required' %}" title="{% trans "View service events that require review" %}">
+                            <a href="{% url 'sl_list_review_required' %}" title="{% trans "Ver eventos de servicio que requieren revisión" %}">
                               <i class="fa fa-stack fa-lg fa-fw">
                                 <i class="fa fa-wrench fa-stack-custom-main"></i>
                                 <i class="fa fa-exclamation fa-stack-custom-sub upper-left hover-sub-info"></i>
                               </i>
-                              <span title="{% blocktrans %}There are currently {{ SE_NEEDING_REVIEW_COUNT }} service events needing review{% endblocktrans %}" class="label {% if SE_NEEDING_REVIEW_COUNT == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
+                              <span title="{% blocktrans %}Actualmente hay {{ SE_NEEDING_REVIEW_COUNT }} eventos de servicio para revisar{% endblocktrans %}" class="label {% if SE_NEEDING_REVIEW_COUNT == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
                                   <span class="total-unreviewed-count">{{ SE_NEEDING_REVIEW_COUNT }}</span>
                               </span>
-                              {% trans "Service Events Needing Review" %}
+                              {% trans "Eventos de servicio a revisar" %}
                             </a>
                           </li>
                         {% endif %}
 
                         <li class="divider"></li>
-                        <li class="nav-header">{% trans "Service Event Schedules" %}</li>
+                        <li class="nav-header">{% trans "Programación de servicio" %}</li>
 
                         <li class="hover-parent">
-                          <a href="{% url "se_schedule_list_all" %}" title="{% trans "View all service event schedules" %}">
+                          <a href="{% url "se_schedule_list_all" %}" title="{% trans "Ver todas las programaciones de servicio" %}">
                             <i class="fa fa-stack fa-lg fa-fw">
                               <i class="fa fa-wrench fa-stack-custom-main"></i>
                               <i class="fa fa-clock-o fa-stack-custom-sub upper-left hover-sub-primary"></i>
                             </i>
-                            {% trans "Service Event Schedules" %}
+                            {% trans "Programaciones de servicio" %}
                           </a>
 
-                          <a href="{% url "se_schedule_due" %}" title="{% trans "View Service Event Schedules that are currently due and overdue" %}">
+                          <a href="{% url "se_schedule_due" %}" title="{% trans "Ver eventos de servicios programados pendientes y vencidos" %}">
                             <i class="fa fa-clock-o fa-lg fa-fw" aria-hidden="true"></i>
-                            {% trans "Due & Overdue" %}
+                            {% trans "Pendientes y vencidos" %}
                           </a>
                         </li>
 
                         {% if perms.service_log.review_serviceevent %}
                           <li>
-                            <a href="{% url "se_schedule_overview_due_dates" %}" title="{% trans "View Service Event Schedules grouped by due date" %}">
+                            <a href="{% url "se_schedule_overview_due_dates" %}" title="{% trans "Ver eventos de servicios programados agrupados por fecha de vencimiento" %}">
                               <i class="fa fa-calendar-check-o fa-lg fa-fw" aria-hidden="true"></i>
-                              {% trans "By Due Status - All" %}
+                              {% trans "Por fecha de vencimiento - Todos" %}
                             </a>
                           </li>
 
                           <li>
-                            <a href="{% url "se_schedule_overview_due_dates_user" %}" title="{% trans "View Service Event Schedules for groups you belong to" %}">
+                            <a href="{% url "se_schedule_overview_due_dates_user" %}" title="{% trans "Ver eventos de servicios programados para tus grupos" %}">
                               <i class="fa fa-calendar-check-o fa-lg fa-fw" aria-hidden="true"></i>
-                              {% trans "By Due Status - Your Groups" %}
+                              {% trans "Por fecha de vencimiento - Tus grupos" %}
                             </a>
                           </li>
                         {% endif %}
