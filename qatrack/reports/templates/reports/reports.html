@@ -212,15 +212,15 @@
             <fieldset>
 
               <button id="preview" value="preview" type="button" class="btn btn-default btn-sm pull-right btn-flat" {% if not report_form.is_bound %}disabled{% endif %}
-                title="{% trans 'Clica para previsualizar este informe en formato PDF' %}">
+                title="{% trans 'Haga clic para previsualizar este informe en formato PDF' %}">
                 <i class="fa fa-eye"> </i> {% trans "Previsualizar" %}
               </button>
               <button id="download" value="download" type="submit" class="btn btn-default btn-sm pull-right btn-flat margin-right-5" {% if not report_form.is_bound %}disabled{% endif %}
-                title="{% trans 'Clica para descargar este informe en el formato seleccionado' %}">
+                title="{% trans 'Haga clic para descargar este informe en el formato seleccionado' %}">
                 <i class="fa fa-download"></i> {% trans "Descargar" %}
               </button>
               <button id="save" value="save" type="button" class="btn btn-primary btn-sm btn-flat" {% if not report_form.is_bound %}disabled{% endif %}
-                title="{% trans "Clica para guardar este informe y seguir más tarde" %}" >
+                title="{% trans "Haga clic para guardar este informe y seguir más tarde" %}" >
                 <i class="fa fa-save"></i> {% trans "Guardar" %}
               </button>
             </fieldset>
@@ -241,7 +241,7 @@
       </div>
       <div class="box-body pad">
         <div id="saved-reports-wrapper">
-          <p><em>{% trans "Clica en uno de los siguientes informes para seguir trabajando en ellos. Sólo puede ser editados por el creador." %}</em></p>
+          <p><em>{% trans "Haga clic en uno de los siguientes informes para seguir trabajando en ellos. Sólo puede ser editados por el creador." %}</em></p>
           <table style="width: 100%" id="saved-reports" data-src="{% url "reports-saved" %}" class="table table-condensed table-striped">
             <thead>
               <tr>
@@ -344,7 +344,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button id="clear-schedule" type="button" class="btn btn-primary btn-flat pull-left" title="{% trans "Clicar para eliminar programación" %}" >
+        <button id="clear-schedule" type="button" class="btn btn-primary btn-flat pull-left" title="{% trans "Hacer clic para eliminar programación" %}" >
           <i class="fa fa-trash"></i>
           {% trans "Eliminar programación" %}
         </button>

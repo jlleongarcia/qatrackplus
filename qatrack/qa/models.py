@@ -1915,8 +1915,8 @@ class TestInstance(models.Model):
         ),
     )
 
-    skipped = models.BooleanField(help_text=_l("Clica si por algún motivo no se realizó la prueba (puedes añadir un comentario)"), default=False)
-    comment = models.TextField(help_text=_l("Add a comment to this test"), null=True, blank=True)
+    skipped = models.BooleanField(help_text=_l("Haga clic si por algún motivo no se realizó la prueba (puedes añadir un comentario)"), default=False)
+    comment = models.TextField(help_text=_l("Añade un comentario sobre esta prueba"), null=True, blank=True)
 
     # reference used
     reference = models.ForeignKey(Reference, null=True, blank=True, editable=False, on_delete=models.PROTECT)

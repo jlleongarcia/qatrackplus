@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='testinstance',
             name='skipped',
-            field=models.BooleanField(default=False, help_text='Clica si por algún motivo no se realizó la prueba (puedes añadir un comentario)'),
+            field=models.BooleanField(default=False, help_text='Haga clic si por algún motivo no se realizó la prueba (puedes añadir un comentario)'),
         ),
     ]
