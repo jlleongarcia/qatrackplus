@@ -26,18 +26,18 @@ require(['homepage']);
     {% if perms.qa.add_testlistinstance %}
       <div class="box box-solid box-info">
         <div class="box-header">
-          <h3 class="box-title">{% trans "Perform QC" %}</h3>
+          <h3 class="box-title">{% trans "Realizar control de calidad" %}</h3>
         </div>
-          <a class="list-group-item" title="{% trans "Choose a Unit to perform qa on" %}" href="{% url 'choose_unit' %}">
-            <i class="fa fa-cubes fa-lg fa-fw"></i> {% trans "Choose a unit to perform QC for" %}
+          <a class="list-group-item" title="{% trans "Elija una unidad para realizar el control de calidad" %}" href="{% url 'choose_unit' %}">
+            <i class="fa fa-cubes fa-lg fa-fw"></i> {% trans "Elija una unidad para realizar el control de calidad" %}
           </a>
-          <a class="list-group-item" title="{% trans "View available test lists to perform" %}" href="{% url 'all_lists' %}">
-            <i class="fa fa-pencil-square fa-lg fa-fw"></i> {% trans "View all test lists available to perform" %}
+          <a class="list-group-item" title="{% trans "Ver todas las listas de pruebas disponibles para realizar" %}" href="{% url 'all_lists' %}">
+            <i class="fa fa-pencil-square fa-lg fa-fw"></i> {% trans "Ver todas las listas de pruebas disponibles para realizar" %}
           </a>
-          <a class="list-group-item" href="{% url "in_progress" %}" title="{% trans "Resume a QC session currently in progress" %}">
+          <a class="list-group-item" href="{% url "in_progress" %}" title="{% trans "Reanudar una sesión de control de calidad en progreso" %}">
             <i class="fa fa-play fa-lg fa-fw" aria-hidden="true"></i>
-            {% trans "Continue an In Progress Test List Instance" %}
-            <span title="{% blocktrans %}There are currently {{ USERS_IN_PROGRESS }} QC Sessions saved in progress{% endblocktrans %}" class="label {% if USERS_IN_PROGRESS == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
+            {% trans "Reanudar una sesión de control de calidad actualmente en curso" %}
+            <span title="{% blocktrans %}Actualmente hay {{ USERS_IN_PROGRESS }} sesiones de control de calidad en progreso{% endblocktrans %}" class="label {% if USERS_IN_PROGRESS == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
                 <span class="total-in-progress-count">{{ USERS_IN_PROGRESS }}</span>
             </span>
           </a>
@@ -65,27 +65,26 @@ require(['homepage']);
             <div class="clearfix"></div>
           </div>
       </div>
-      <!-- /.box -->
     {% endif %}
 
     {% if perms.qa.can_review or perms.qa.can_view_completed %}
       <div class="box box-solid box-info">
         <div class="box-header">
-          <h3 class="box-title">{% trans "Review QC" %}</h3>
+          <h3 class="box-title">{% trans "Revisar control de calidad" %}</h3>
         </div>
         {% if perms.qa.can_review %}
-          <a class="list-group-item" title="{% trans "Choose a Unit to review QC for" %}" href="{% url 'choose_review_unit' %}">
-            <i class="fa fa-cubes fa-lg fa-fw"></i> {% trans "Choose a unit to review QC for" %}
+          <a class="list-group-item" title="{% trans "Elija una unidad para revisar el control de calidad" %}" href="{% url 'choose_review_unit' %}">
+            <i class="fa fa-cubes fa-lg fa-fw"></i> {% trans "Elija una unidad para revisar el control de calidad" %}
           </a>
-          <a class="list-group-item" title="{% trans "Review data" %}" href="{% url 'unreviewed' %}">
+          <a class="list-group-item" title="{% trans "Revisar datos" %}" href="{% url 'unreviewed' %}">
             <i class="fa fa-question-circle fa-lg fa-fw" aria-hidden="true"></i>
-            {% trans "View QC data awaiting review" %}
+            {% trans "Revisar datos de control de calidad en espera de revisión" %}
             {% if perms.qa.can_review_non_visible_tli %}
-              <span title="There are currently {{ UNREVIEWED }} QC Sessions waiting to be reviewed" class="label {% if UNREVIEWED == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
+              <span title="Actualmente hay {{ UNREVIEWED }} sesiones de control de calidad para revisar" class="label {% if UNREVIEWED == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
                 <span class="total-unreviewed-count">{{ UNREVIEWED }}</span>
               </span>
             {% else %}
-              <span class="fa fa-lg fa-fw" title="There are currently {{ USERS_UNREVIEWED }} QC Sessions waiting to be reviewed" class="label {% if USERS_UNREVIEWED == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
+              <span class="fa fa-lg fa-fw" title="Actualmente hay {{ USERS_UNREVIEWED }} sesiones de control de calidad para revisar" class="label {% if USERS_UNREVIEWED == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
                 <span class="total-unreviewed-count">{{ USERS_UNREVIEWED }}</span>
               </span>
             {% endif %}
@@ -93,9 +92,9 @@ require(['homepage']);
         {% endif %}
 
         {% if perms.qa.can_view_completed %}
-          <a class="list-group-item" title="{% trans "View trends and control charts" %}" href="{% url 'charts' %}">
+          <a class="list-group-item" title="{% trans "Ver tendencias y gráficas de control" %}" href="{% url 'charts' %}">
             <i class="fa fa-line-chart fa-fw fa-lg"></i>
-            {% trans "View trends &amp; control charts" %}
+            {% trans "Ver tendencias y gráficas de control" %}
           </a>
         {% endif %}
       </div>
@@ -104,16 +103,16 @@ require(['homepage']);
     {% if perms.service_log.view_serviceevent or perms.service_log.add_serviceevent or perms.service_log.perform_returntoserviceqa or perms.qa.can_review %}
       <div class="box box-solid box-info">
         <div class="box-header">
-          <h3 class="box-title">{% trans "Service Log" %}</h3>
+          <h3 class="box-title">{% trans "Registro de servicio" %}</h3>
         </div>
 
         {% if perms.service_log.view_serviceevent %}
-          <a class="list-group-item" title="{% trans "View all service events" %}" href="{% url 'sl_list_all' %}">
+          <a class="list-group-item" title="{% trans "Ver todos los eventos de servicio" %}" href="{% url 'sl_list_all' %}">
             <i class="fa fa-stack fa-lg fa-fw">
               <i class="fa fa-wrench fa-stack-custom-main"></i>
               <i class="fa fa-wrench fa-flip-horizontal left--5 fa-stack-custom-main "></i>
             </i>
-            {% trans "View all service events" %}
+            {% trans "Ver todos los eventos de servicio" %}
           </a>
         {% endif %}
         {% if perms.service_log.add_serviceevent %}
@@ -122,40 +121,40 @@ require(['homepage']);
               <i class="fa fa-wrench fa-stack-custom-main"></i>
               <i class="fa fa-plus fa-stack-custom-sub upper-left hover-sub-success"></i>
             </i>
-            {% trans "Open new service event" %}
+            {% trans "Abrir nuevo evento de servicio" %}
           </a>
         {% endif %}
         {% if perms.service_log.review_serviceevent %}
-          <a class="list-group-item" title="{% trans "Service Events Needing Review" %}" href="{% url 'sl_list_review_required' %}">
+          <a class="list-group-item" title="{% trans "Eventos de servicio a revisar" %}" href="{% url 'sl_list_review_required' %}">
             <i class="fa fa-stack fa-lg fa-fw">
               <i class="fa fa-wrench fa-stack-custom-main"></i>
               <i class="fa fa-question-circle fa-stack-custom-sub upper-left hover-sub-success"></i>
             </i>
-            {% trans "Service Events Needing Review" %}
-            <span title="{% trans "There are currently {{ SE_NEEDING_REVIEW_COUNT }} service events needing review" %}" class="label {% if SE_NEEDING_REVIEW_COUNT == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
+            {% trans "Eventos de servicio a revisar" %}
+            <span title="{% trans "Actualmente hay {{ SE_NEEDING_REVIEW_COUNT }} eventos de servicio a revisar" %}" class="label {% if SE_NEEDING_REVIEW_COUNT == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
                 <span class="total-unreviewed-count">{{ SE_NEEDING_REVIEW_COUNT }}</span>
             </span>
           </a>
         {% endif %}
 
         {% if perms.service_log.perform_returntoserviceqa %}
-          <a class="list-group-item" title="{% trans "View all incomplete RTS QC" %}" href="{% url 'rtsqa_list_incomplete' %}">
+          <a class="list-group-item" title="{% trans "Ver todas las listas de pruebas de aceptación" %}" href="{% url 'rtsqa_list_incomplete' %}">
             <i class="fa fa-stack fa-lg fa-fw">
               <i class="fa fa-pencil-square-o fa-stack-custom-main"></i>
               <i class="fa fa-share fa-rotate-180 fa-stack-custom-sub lower-extra-left hover-sub-info"></i>
             </i>
-            {% trans "View all incomplete return to service QC" %}
+            {% trans "Ver todas las listas de pruebas de aceptación" %}
 
-            <span title="{% trans "There are currently {{ SE_RTS_INCOMPLETE_QA_COUNT }} incomplete return to service test lists" %}" class="label {% if SE_RTS_INCOMPLETE_QA_COUNT == 0 %}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
+            <span title="{% trans "Actualmente hay {{ SE_RTS_INCOMPLETE_QA_COUNT }} listas de pruebas de aceptación incompletas" %}" class="label {% if SE_RTS_INCOMPLETE_QA_COUNT == 0 %}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
                 <span class="total-unreviewed-count">{{ SE_RTS_INCOMPLETE_QA_COUNT }}</span>
             </span>
           </a>
         {% endif %}
         {% if perms.qa.can_review %}
-          <a class="list-group-item" title="{% trans "View unreviewed RTS QC" %}" href="{% url 'rtsqa_list_unreviewed' %}">
+          <a class="list-group-item" title="{% trans "Ver las pruebas de aceptación sin revisar" %}" href="{% url 'rtsqa_list_unreviewed' %}">
             <i class="fa fa-question-circle fa-lg fa-fw" aria-hidden="true"></i>
-            {% trans "View unreviewed return to service QC" %}
-            <span title="{% trans "There are currently {{ SE_RTS_UNREVIEWED_QA_COUNT }} unreviewed return to service sessions" %}" class="label {% if SE_RTS_UNREVIEWED_QA_COUNT == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
+            {% trans "Ver las pruebas de aceptación sin revisar" %}
+            <span title="{% trans "Actualmente hay {{ SE_RTS_UNREVIEWED_QA_COUNT }} sesiones de aceptación sin revisar" %}" class="label {% if SE_RTS_UNREVIEWED_QA_COUNT == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
               <span class="total-unreviewed-count">{{ SE_RTS_UNREVIEWED_QA_COUNT }}</span>
             </span>
           </a>

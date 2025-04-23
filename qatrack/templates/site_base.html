@@ -168,70 +168,70 @@
                   <li class="dropdown">
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      {% trans "Perform QC" %}
+                      {% trans "Realizar control de calidad" %}
                       <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu" role="menu">
-                      <li class="nav-header">{% trans "QC Lists" %}</li>
+                      <li class="nav-header">{% trans "Listas de control de calidad" %}</li>
                       <li>
-                        <a href="{% url "choose_unit" %}" title="{% trans "Choose a specfic Unit To Perform QC On" %}">
+                        <a href="{% url "choose_unit" %}" title="{% trans "Elija una unidad específica para realizar el control de calidad" %}">
                           <i class="fa fa-cubes fa-lg fa-fw" aria-hidden="true"></i>
-                          {% trans "Choose Unit" %}
+                          {% trans "Elija la unidad" %}
                         </a>
                       </li>
                       <li>
-                        <a href="{% url "all_lists" %}" title="{% trans "View list of all available QC" %}">
+                        <a href="{% url "all_lists" %}" title="{% trans "Ver lista de todos los controles de calidad disponibles" %}">
                           <i class="fa fa-pencil-square-o fa-lg fa-fw" aria-hidden="true"></i>
-                          {% trans "All QC" %}
+                          {% trans "Todos los controles de calidad" %}
                         </a>
                       </li>
                       <li>
-                        <a href="{% url "qa_by_overdue" %}" title="{% trans "View QC that is currently due and overdue" %}">
+                        <a href="{% url "qa_by_overdue" %}" title="{% trans "Ver los controles de calidad que están pendientes y vencidos" %}">
                           <i class="fa fa-clock-o fa-lg fa-fw" aria-hidden="true"></i>
-                          {% trans "Due & Overdue" %}
+                          {% trans "Pendientes y vencidos" %}
                         </a>
                       </li>
                       <li>
-                        <a href="{% url "in_progress" %}" title="{% trans "Resume a QC session currently in progress" %}">
+                        <a href="{% url "in_progress" %}" title="{% trans "Reanudar una sesión de control de calidad actualmente en curso" %}">
                           <i class="fa fa-play fa-lg fa-fw" aria-hidden="true"></i>
-                          <span title="{% blocktrans %}There are currently {{ USERS_IN_PROGRESS}} QC Sessions saved in progress for your groups{% endblocktrans %}" class="label {% if USERS_IN_PROGRESS == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
+                          <span title="{% blocktrans %}Actualmente hay {{ USERS_IN_PROGRESS}} sesiones de control de calidad en curso para tu grupo{% endblocktrans %}" class="label {% if USERS_IN_PROGRESS == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper">
                             <span class="total-in-progress-count">{{ USERS_IN_PROGRESS }}</span>
                           </span>
-                          {% trans "In Progress" %}
+                          {% trans "En curso" %}
                         </a>
                       </li>
                       <li class="divider"></li>
-                      <li class="nav-header">{% trans "Tree Views" %}</li>
+                      <li class="nav-header">{% trans "Vistas de árbol" %}</li>
                       <li>
-                        <a href="{% url "qa_frequency_tree" %}" title="{% trans "View QC Organized by Unit & Frequency" %}">
+                        <a href="{% url "qa_frequency_tree" %}" title="{% trans "Ver los controles de calidad organizados por unidad y frecuencia" %}">
                           <i style="margin-left: 10px" class="fa fa-stack fa-fw">
                             <i class="fa fa-clock-o fa-stack-custom-sub upper-right"></i>
                             <i style="left: -2px" class="fa fa-cubes fa-lg fa-stack-custom-sub lower-left"></i>
                           </i>
-                          {% trans "QC Treeview: Unit, Frequency" %}
+                          {% trans "Controles de calidad por unidad y frecuencia" %}
                         </a>
                       </li>
                       <li>
-                        <a href="{% url "qa_category_tree" %}" title="{% trans "View QC Organized by Unit, Frequency, Category" %}">
+                        <a href="{% url "qa_category_tree" %}" title="{% trans "Ver los controles de calidad organizados por unidad, frecuencia y categoría" %}">
                           <i style="margin-left: 10px" class="fa fa-stack fa-fw">
                             <i style="left: -10px" class="fa fa-clock-o fa-stack-custom-sub upper-left"></i>
                             <i style="left: -2px" class="fa fa-cubes fa-lg fa-stack-custom-sub lower-left"></i>
                             <i class="fa fa-tags fa-stack-custom-sub upper-right"></i>
                           </i>
-                          {% trans "QC Treeview: Unit, Frequency, Category" %}
+                          {% trans "Controles de calidad por unidad, frecuencia y categoría" %}
                         </a>
                       </li>
                       {% if perms.service_log.perform_returntoserviceqa %}
                         <li class="divider"></li>
-                        <li class="nav-header">{% trans "Service Log" %}</li>
+                        <li class="nav-header">{% trans "Registro de servicio" %}</li>
                         <li class="hover-parent">
-                          <a href="{% url 'rtsqa_list_incomplete' %}" title="{% trans "View all incomplete return to service QC" %}">
+                          <a href="{% url 'rtsqa_list_incomplete' %}" title="{% trans "Ver todas las pruebas de aceptación incompletas" %}">
                             <i class="fa fa-stack fa-lg fa-fw">
                               <i class="fa fa-pencil-square-o fa-stack-custom-main"></i>
                               <i class="fa fa-share fa-rotate-180 fa-stack-custom-sub lower-extra-left hover-sub-info"></i>
                             </i>
-                            {% trans "All Incomplete Return To Service" %}
+                            {% trans "Todas las pruebas de aceptación incompletas" %}
                           </a>
                         </li>
                       {% endif %}
@@ -242,18 +242,18 @@
                 {% if perms.qa.can_review or perms.qa.can_view_completed or perms.qa.can_view_overview %}
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      {% trans "Review QC" %}
+                      {% trans "Revisar control de calidad" %}
                       {% if perms.qa.can_review %}
                         {% if perms.qa.can_review_non_visible_tli %}
                           <span
-                            title="{% blocktrans %}There are currently {{ UNREVIEWED }} QC Sessions waiting to be reviewed{% endblocktrans %}"
+                            title="{% blocktrans %}Actualmente hay {{ UNREVIEWED }} sesiones de control de calidad sin revisar{% endblocktrans %}"
                             class="label {% if UNREVIEWED == 0 %}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper"
                           >
                             <span class="total-unreviewed-count">{{ UNREVIEWED }}</span>
                           </span>
                         {% else %}
                           <span
-                            title="{% blocktrans %}There are currently {{ USERS_UNREVIEWED }} QC Sessions waiting to be reviewed{% endblocktrans %}"
+                            title="{% blocktrans %}Actualmente hay {{ USERS_UNREVIEWED }} sesiones de control de calidad sin revisar{% endblocktrans %}"
                             class="label {% if USERS_UNREVIEWED == 0%}label-success{%else%}label-warning{%endif%} unreviewed-count-wrapper"
                           >
                             <span class="total-unreviewed-count">{{ USERS_UNREVIEWED }}</span>
@@ -266,13 +266,13 @@
                     <ul class="dropdown-menu" role="menu">
                       {% if perms.qa.can_review or perms.qa.can_view_overview %}
 
-                        <li class="nav-header">{% trans "QA Program Status" %}</li>
+                        <li class="nav-header">{% trans "Estado de los controles de calidad" %}</li>
 
                         {% if perms.qa.can_review_non_visible_tli %}
                           <li>
                             <a href="{% url "overview" %}" title="{% trans "View a summary of the status of the QC program" %}">
                               <i class="fa fa-globe fa-lg fa-fw" aria-hidden="true"></i>
-                              {% trans "Overview - All" %}
+                              {% trans "Todos" %}
                             </a>
                           </li>
                         {% endif %}

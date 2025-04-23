@@ -200,7 +200,7 @@ class BootstrapCategoryTree(BaseTree):
 
         seen_sites = set()
 
-        tree = [self.new_node(_("QC by Unit, Frequency, & Category"))]
+        tree = [self.new_node(_("Control de calidad por unidad, frecuencia y categoría"))]
         root_nodes = tree[-1]['nodes']
 
         for (
@@ -310,7 +310,7 @@ class BootstrapFrequencyTree(BaseTree):
         seen_units = set()
         seen_names = set()
 
-        tree = [self.new_node(_("QC by Unit & Frequency"))]
+        tree = [self.new_node(_("Control de calidad por unidad y frecuencia"))]
         root_nodes = tree[-1]['nodes']
         for utc_id, utc_name, freq_slug, freq_int, site, site_name, uclass, uclass_name, unum, uname in self.qs:
 
