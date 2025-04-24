@@ -827,31 +827,31 @@
 
         <div class="tab-content">
           {% if user.is_authenticated %}
-            <h4 class="control-sidebar-heading">{% trans "Account" %}</h4>
+            <h4 class="control-sidebar-heading">{% trans "Cuenta" %}</h4>
 
             <ul class="control-sidebar-menu">
               <li>
                 <a href="{% url 'account-details' %}" class="margin-left-10 control-sidebar-subheading">
                   <i class="fa fa-user-circle-o fa-fw"></i>
-                  {% trans "Account Details" %}
+                  {% trans "Detalles de la cuenta" %}
                 </a>
               </li>
               <li>
                 <a href="{% url 'auth_logout' %}" class="margin-left-10 control-sidebar-subheading">
                   <i class="fa fa-sign-out fa-fw"></i>
-                  {% trans "Logout" %}
+                  {% trans "Cerrar sesión" %}
                 </a>
               </li>
             </ul>
 
             {% if user.is_staff or perms.units.change_unitavailable_time %}
-              <h4 class="control-sidebar-heading">Admin Options</h4>
+              <h4 class="control-sidebar-heading">Opciones de administrador</h4>
               <ul class="control-sidebar-menu">
                 {% if user.is_staff %}
                   <li>
                     <a href="{% url 'admin:index' %}" class="margin-left-10 control-sidebar-subheading">
                       <i class="fa fa-cog fa-fw"></i>
-                      {% trans "Admin" %}
+                      {% trans "Administrador" %}
                     </a>
                   </li>
                 {% endif %}
@@ -860,7 +860,7 @@
                     <i class="fa fa-stack fa-fw">
                       <i class="fa fa-cubes fa-stack-custom-main"></i>
                     </i>
-                    {% trans "Unit Available Times" %}
+                    {% trans "Calendario de disponibilidad de unidades" %}
                   </a>
                 </li>
 
@@ -871,7 +871,7 @@
                         <i class="fa fa-users fa-stack-custom-main"></i>
                         <i class="fa fa-lock fa-stack-custom-sub primary"></i>
                       </span>
-                      {% trans "Groups & Permissions" %}
+                      {% trans "Grupos y permisos" %}
                     </a>
                   </li>
                 {% endif %}
@@ -884,7 +884,7 @@
               <li>
                 <a href="{% url 'login' %}" class="margin-left-10 control-sidebar-subheading">
                   <i class="fa fa-sign-in fa-fw"></i>
-                  {% trans "Login" %}
+                  {% trans "Iniciar sesión" %}
                 </a>
               </li>
             </ul>
