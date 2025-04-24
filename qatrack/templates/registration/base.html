@@ -27,14 +27,14 @@
       <div class="col-md-3">
         <div class="box box-solid" style="min-width: 165px;">
           <div class="box-header">
-            <h3 class="box-title"><i class="fa fa-user fa-fw" aria-hidden="true"></i> {% trans "Account" %}</h3>
+            <h3 class="box-title"><i class="fa fa-user fa-fw" aria-hidden="true"></i> {% trans "Cuenta" %}</h3>
           </div>
           <div class="box-body no-padding">
             <ul class="nav nav-pills nav-stacked">
                 <li {% block login_active %}{% endblock login_active %}>
                   <a href="{% url "login" %}">
                     <i class="fa fa-power-off fa-fw success" aria-hidden="true"></i>
-                    {% trans "Log In" %}
+                    {% trans "Iniciar sesión" %}
                   </a>
                 </li>
                 {% if user.is_authenticated %}
@@ -44,7 +44,7 @@
                         <i class="fa fa-user fa-stack-custom-main"></i>
                         <i class="fa fa-info fa-stack-custom-sub info"></i>
                       </span>
-                      {% trans "Account Details" %}
+                      {% trans "Detalles de la cuenta" %}
                     </a>
                   </li>
                   {% if ACCOUNTS_PASSWORD_RESET %}
@@ -54,7 +54,7 @@
                           <i class="fa fa-lock fa-stack-custom-main"></i>
                           <i class="fa fa-pencil fa-stack-custom-sub primary"></i>
                         </span>
-                        {% trans "Change Password" %}
+                        {% trans "Cambiar contraseña" %}
                       </a>
                     </li>
                   {% endif %}
@@ -66,7 +66,7 @@
                         <i class="fa fa-lock fa-stack-custom-main"></i>
                         <i class="fa fa-undo fa-stack-custom-sub primary"></i>
                       </span>
-                      {% trans "Reset Password" %}
+                      {% trans "Restablecer contraseña" %}
                     </a>
                   </li>
                 {% endif %}
@@ -79,7 +79,7 @@
                         <i class="fa fa-users fa-stack-custom-main"></i>
                         <i class="fa fa-lock fa-stack-custom-sub primary"></i>
                       </span>
-                      {% trans "Group Membership & Permissions" %}
+                      {% trans "Membresía y permisos del grupo" %}
                     </a>
                   </li>
                 {% endif %}
@@ -89,14 +89,14 @@
                   <li>
                     <a href="{% url "auth_logout" %}">
                       <i class="fa fa-power-off fa-fw danger" aria-hidden="true"></i>
-                      {% trans "Log Out" %}
+                      {% trans "Cerrar sesión" %}
                     </a>
                   </li>
                 {% elif SELF_REGISTER %}
                   <li {% block register_active %}{% endblock register_active %}>
                     <a href="{% url "account-register" %}">
                       <i class="fa fa-user fa-fw " aria-hidden="true"></i>
-                      {% trans "Register" %}
+                      {% trans "Registrarse" %}
                     </a>
                   </li>
                 {% endif %}

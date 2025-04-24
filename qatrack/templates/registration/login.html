@@ -24,15 +24,15 @@
 <div class="box">
 
   <div class="box-header">
-    <h3 class="box-title"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {% trans "Sign in to start your session" %}</h3>
+    <h3 class="box-title"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> {% trans "Inicia tu sesión" %}</h3>
   </div>
 
 
   <div class="box-body">
     {% if user.is_authenticated %}
       <div class="alert alert-info margin-bottom-10">
-        <strong>{% trans "Note" %}</strong>:
-        {% blocktrans %}you are already logged in as {{ user }}.{% endblocktrans %}
+        <strong>{% trans "Nota" %}</strong>:
+        {% blocktrans %}ya has iniciado sesión como {{ user }}.{% endblocktrans %}
       </div>
     {% endif %}
 
@@ -83,7 +83,7 @@
     </div>
 
     {% if not user.is_authenticated %}
-      <div class="text-muted description-block">{% blocktrans %}If you have any trouble logging in to your account, contact the site administrator.{% endblocktrans %}</div>
+      <div class="text-muted description-block">{% blocktrans %}Si tienes cualquier problema para iniciar sesión, contacta con el administrador.{% endblocktrans %}</div>
     {% endif %}
   </div>
 </div>

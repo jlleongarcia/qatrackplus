@@ -23,7 +23,7 @@
                         <i class="fa fa-user fa-stack-custom-main"></i>
                         <i class="fa fa-info fa-stack-custom-sub info"></i>
                     </span>
-                    {% trans "Account Details" %}
+                    {% trans "Detalles de la cuenta" %}
                 </h3>
             {% else %}
                 <h3 class="box-title">
@@ -31,26 +31,26 @@
                         <i class="fa fa-user fa-stack-custom-main"></i>
                         <i class="fa fa-info fa-stack-custom-sub info"></i>
                     </span>
-                    {% trans "Account Details for " %}{% if user.get_full_name %}{{user.get_full_name}}{% else %} {{user.username}}{% endif %}
+                    {% trans "Detalles de la cuenta para " %}{% if user.get_full_name %}{{user.get_full_name}}{% else %} {{user.username}}{% endif %}
                 </h3>
             {% endif %}
         </div>
 
         <div class="box-body">
             {% if user.is_anonymous %}
-                <em><a href="{% url "login" %}">Log in</a> to see your account details</em>
+                <em><a href="{% url "login" %}">Inicia sesión</a> para ver los detalles de tu cuenta</em>
             {% else %}
 
                 <dl class="dl-horizontal">
-                    <dt>Username:</dt>
+                    <dt>Nombre de usuario:</dt>
                     <dd>{{user.username}}</dt>
-                    <dt>Email:</dt>
+                    <dt>Correo electrónico:</dt>
                     <dd>{% if user.email %}{{user.email}}{% else %}<em>N/A</em>{% endif %}</dt>
-                    <dt>Registered:</dt>
+                    <dt>Registradio:</dt>
                     <dd>{{user.date_joined}}</dt>
-                    <dt>Last Login:</dt>
+                    <dt>Última conexión:</dt>
                     <dd>{{user.last_login}}</dt>
-                    <dt>Groups</dt>
+                    <dt>Grupos</dt>
                     <dd>
                         <ul>
                             {% for group in user.groups.all %}
@@ -59,7 +59,7 @@
                         </ul>
                     </dd>
                 </dl>
-                <h3>User Permissions</h3>
+                <h3>Permisos de usuario</h3>
 
                 <ul class="list-unstyled">
                     <li>
