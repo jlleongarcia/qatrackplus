@@ -4,9 +4,18 @@ from django.contrib.auth import views as auth_views
 from django.urls import path
 
 from qatrack.accounts import views
+from qatrack.accounts.forms import CustomAuthenticationForm
 from qatrack.qatrack_core.views import handle_404
 
 urlpatterns = [
+    url(
+        r'^login/$',
+        auth_views.LoginView.as_view(
+            template_name='registration/login.html', # Make sure template path is correct
+            authentication_form=CustomAuthenticationForm # Tell the view to use your form
+        ),
+        name='login' # Use the standard name 'login'
+    ),
     url(r'^ping/$', views.ping, name="ping_server"),
     url(r'^logout/$', auth_views.LogoutView.as_view(), name="auth_logout"),
     url(r'^details/$', views.AccountDetails.as_view(), name="account-details"),
