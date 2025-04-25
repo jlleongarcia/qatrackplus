@@ -16,14 +16,14 @@ from qatrack.units import models as u_models
 class RadiationUnitsDetailsReport(BaseReport):
 
     report_type = "radiationunits_details"
-    name = _l("Radiation Units Details")
+    name = _l("Equipos de Rayos X")
     filter_class = filters.RadiationUnitsFilter
     description = mark_safe(_l(
-        "This report lists all Radiation Units for selected sites and rooms. "
-        "Leave filters blank to include all."
+        "Este informe lista todos los equipos de radiodiagnóstico para los lugares y salas seleccionados. "
+        "Deja en blanco los filtros para incluirlos todos."
     ))
 
-    category = _l("Equipment")
+    category = _l("Equipamiento")
 
     template = "reports/equipment/radiationunits_details.html" # Define the template path
     formats = ORDERED_CONTENT_TYPES

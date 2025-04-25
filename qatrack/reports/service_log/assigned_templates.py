@@ -19,7 +19,7 @@ class ScheduledTemplatesReport(filters.ServiceEventScheduleFilterDetailsMixin, B
         "This report includes a summary of all service event templates assigned to "
         "selected sites, units, frequencies, and groups."
     ))
-    category = _l("Service Log")
+    category = _l("Registro de eventos de servicio")
 
     template = "reports/service_log/assigned_templates.html"
 

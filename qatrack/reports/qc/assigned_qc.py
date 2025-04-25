@@ -13,13 +13,13 @@ from qatrack.units import models as umodels
 class AssignedQCReport(filters.UnitTestCollectionFilterDetailsMixin, BaseReport):
 
     report_type = "qc-assignment-summary"
-    name = _l("QC Assignment Summary")
+    name = _l("Resumen de asignación de QA")
     filter_class = filters.UnitTestCollectionFilter
     description = mark_safe(_l(
-        "This report includes a summary of all Test Lists (Cycles) assigned to "
-        "selected sites, units, frequencies, and groups."
+        "Este informe resumen todas las listas de pruebas (ciclos) asignadas a "
+        "los lugares, salas, frecuencias y grupos seleccionados."
     ))
-    category = _l("QC")
+    category = _l("Control de calidad")
 
     template = "reports/qc/assigned_qc.html"
 
@@ -112,13 +112,13 @@ class AssignedQCReport(filters.UnitTestCollectionFilterDetailsMixin, BaseReport)
 class AssignedQCDetailsReport(filters.UnitTestCollectionFilterDetailsMixin, BaseReport):
 
     report_type = "qc-assignment-details"
-    name = _l("QC Assignment Details")
+    name = _l("Detalles de asignación de QA")
     filter_class = filters.AssignedQCDetailsFilter
     description = mark_safe(_l(
-        "This report includes details of all Test Lists (Cycles) assigned to "
-        "selected sites, units, frequencies, and groups."
+        "Este informe detalla todas las listas de pruebas (ciclos) asignadas a "
+        "los lugares, salas, frecuencias y grupos seleccionados."
     ))
-    category = _l("QC")
+    category = _l("Control de calidad")
 
     template = "reports/qc/assigned_qc_details.html"
 
@@ -270,13 +270,13 @@ class AssignedQCDetailsReport(filters.UnitTestCollectionFilterDetailsMixin, Base
 class PaperBackupForms(AssignedQCDetailsReport):
 
     report_type = "qc-paper-backup-forms"
-    name = _l("QC Paper Backup Forms")
+    name = _l("Formulario Control de calidad")
     filter_class = filters.AssignedQCDetailsFilter
     description = mark_safe(_l(
-        "This report generates pdf backup forms which can be used in place of QATrack+ "
-        "in case your QATrack+ installation is offline for some reason."
+        "Genera una plantilla sobre la que apuntar el resultados de las pruebas del QC "
+        "en el caso de que la plataforma QATrack+ no funcione."
     ))
-    category = _l("QC Backup Forms")
+    category = _l("Formularios")
 
     template = "reports/qc/backup_forms.html"
     formats = [PDF]

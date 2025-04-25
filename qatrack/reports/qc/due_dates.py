@@ -14,7 +14,7 @@ from qatrack.units import models as umodels
 
 class DueDatesReportMixin(filters.UnitTestCollectionFilterDetailsMixin):
 
-    category = _l("QC")
+    category = _l("Control de calidad")
 
     def get_queryset(self):
         qs = models.UnitTestCollection.objects.select_related(
@@ -102,11 +102,11 @@ class DueDatesReportMixin(filters.UnitTestCollectionFilterDetailsMixin):
 class NextDueDatesReport(DueDatesReportMixin, BaseReport):
 
     report_type = "next_due"
-    name = _l("Next Due Dates for QC")
+    name = _l("Próximos controles")
     filter_class = filters.UnitTestCollectionSchedulingFilter
-    description = mark_safe(_l("This report shows QC tests whose next due date fall in the selected time period."))
+    description = mark_safe(_l("Este informe muestra los siguientes controles a realizar en el intervalo de fechas seleccionado."))
 
-    category = _l("Scheduling")
+    category = _l("Calendario")
     template = "reports/qc/next_due.html"
 
     def get_filename(self, report_format):
@@ -116,11 +116,11 @@ class NextDueDatesReport(DueDatesReportMixin, BaseReport):
 class DueAndOverdueQCReport(DueDatesReportMixin, BaseReport):
 
     report_type = "due_and_overdue"
-    name = _l("Due and Overdue QC")
+    name = _l("Controles pendientes y vencidos")
     filter_class = filters.UnitTestCollectionFilter
-    description = mark_safe(_l("This report shows QC tests which are currently due or overdue"))
+    description = mark_safe(_l("Este informe muestra los controles pendientes de realizar y vencidos."))
 
-    category = _l("Scheduling")
+    category = _l("Calendario")
     template = "reports/qc/next_due.html"
 
     def get_queryset(self):

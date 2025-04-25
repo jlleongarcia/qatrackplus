@@ -22,16 +22,16 @@ from qatrack.units import models as umodels
 class TestListInstanceSummaryReport(BaseReport):
 
     report_type = "testlistinstance_summary"
-    name = _l("Test List Instance Summary")
+    name = _l("Resumen de listas de pruebas")
     filter_class = filters.TestListInstanceFilter
     description = mark_safe(_l(
-        "This report lists all Test List Instances from a given time period for "
-        "selected sites, units, frequencies, and groups."
+        "Este informe lista todas las pruebas en un determinado intervalo de tiempo "
+        "para los lugares, salas, frecuencias y grupos seleccionados."
     ))
 
     MAX_TLIS = getattr(settings, "REPORT_QCSUMMARYREPORT_MAX_TLIS", 5000)
 
-    category = _l("QC")
+    category = _l("Control de calidad")
 
     template = "reports/qc/testlistinstance_summary.html"
 
@@ -168,18 +168,18 @@ class TestListInstanceSummaryReport(BaseReport):
 class TestListInstanceDetailsReport(BaseReport):
 
     report_type = "testlistinstance_details"
-    name = _l("Test List Instance Details")
+    name = _l("Informe de resultados de QC")
     filter_class = filters.TestListInstanceByUTCFilter
     description = mark_safe(
         _l(
-            "This report includes details for all Test List Instances from a given time period for "
-            "a given Unit Test List (Cycle) assignment."
+            "Este informe detalla los resultados de las pruebas en un determinado intervalo de tiempo "
+            "y para un equipo determinado."
         )
     )
 
     MAX_TLIS = getattr(settings, "REPORT_UTCREPORT_MAX_TLIS", 365)
 
-    category = _l("QC")
+    category = _l("Control de calidad")
 
     template = "reports/qc/testlistinstance_details.html"
 

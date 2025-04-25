@@ -17,7 +17,7 @@ def format_fault_types(fault):
 
 class FaultReportMixin:
 
-    category = _l("Faults")
+    category = _l("Incidencias")
 
     def get_queryset(self):
         return models.Fault.objects.select_related(
@@ -83,10 +83,10 @@ class FaultReportMixin:
 class FaultSummaryReport(FaultReportMixin, BaseReport):
 
     report_type = "fault_summary"
-    name = _l("Fault Summary")
+    name = _l("Resumen de incidencias")
     filter_class = filters.FaultSummaryFilter
     description = mark_safe(_l(
-        "This report includes a summary of all faults from a given time period for selected units"
+        "Este informe resume las incidencias en un determinado intervalo de tiempo para las salas seleccionadas."
     ))
 
     template = "reports/faults/summary.html"

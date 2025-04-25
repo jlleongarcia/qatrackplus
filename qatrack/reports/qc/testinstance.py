@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _l
 from qatrack.qa import models
 from qatrack.reports import filters
 from qatrack.reports.reports import (
-    ORDERED_CONTENT_TYPES,
+    PDF,
     BaseReport,
     format_user,
 )
@@ -17,16 +17,16 @@ from qatrack.units import models as u_models
 class TestInstanceDetailsReport(BaseReport):
 
     report_type = "testinstance_details"
-    name = _l("Test Instance Details")
+    name = _l("Informe para el CSN")
     filter_class = filters.TestDataFilter
-    description = mark_safe(_l("This report shows QC test values for select units"))
+    description = mark_safe(_l("Informe sobre el resultado de las pruebas seleccionadas."))
 
-    category = _l("QC")
+    category = _l("Control de calidad")
 
     MAX_TIS = getattr(settings, "REPORT_TESTDATAREPORT_MAX_TIS", 365 * 3)
 
     template = "reports/qc/testinstance_details.html"
-    formats = ORDERED_CONTENT_TYPES
+    formats = [PDF]
 
     __test__ = False  # supress pytest warning
 
