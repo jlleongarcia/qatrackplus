@@ -181,7 +181,7 @@ class UTCList(BaseListableView):
     model = models.UnitTestCollection
 
     action = "perform"
-    action_display = _l("Perform")
+    action_display = _l("Realizar")
     page_title = _l("Todos los controles de calidad")
     active_only = True
     inactive_only = False
