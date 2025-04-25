@@ -182,7 +182,7 @@ class UTCList(BaseListableView):
 
     action = "perform"
     action_display = _l("Perform")
-    page_title = _l("All QC")
+    page_title = _l("Todos los controles de calidad")
     active_only = True
     inactive_only = False
     visible_only = True

@@ -74,7 +74,7 @@ require(['unit_choose']);
         <div class="box" style="">
           <div class="box-header">
             <h3 class="box-title">
-              <a href="{% url "qa_by_site" site=site.0 %}" title="{% trans "Click to view all QC at Site: " %}{{ site.1 }}">
+              <a href="{% url "qa_by_site" site=site.0 %}" title="{% trans "Haga clic para ver todos los controles de calidad en " %}{{ site.1 }}">
                 {% if site.1 == 'zzzNonezzz' %}{% trans "Other" %}{% else %}{{ site.1 }}{% endif %}
                 <i class="fa fa-cubes"></i>
               </a>
