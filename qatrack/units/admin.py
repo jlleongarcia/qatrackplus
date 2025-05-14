@@ -147,12 +147,12 @@ class UnitAvailableTimeInline(admin.TabularInline):
 class UnitAdmin(BaseQATrackAdmin):
 
     form = UnitFormAdmin
-    list_display = ['name', 'number', 'active', 'type', 'site', 'is_serviceable']
-    list_filter = ['active', 'site', 'modalities', 'type__unit_class']
-    list_editable = ['site', 'is_serviceable']
+    list_display = ['name', 'number', 'type', 'serial_number', 'site', 'active']
+    list_filter = ['active', 'site', 'type__unit_class']
+    # list_editable = ['site', 'is_serviceable']
     list_select_related = ["site", "type"]
     ordering = ['number']
-    search_fields = ['number', 'name']
+    search_fields = ['name', 'type__vendor__name', 'type__model', 'serial_number']
 
     save_as = True
 
@@ -189,7 +189,7 @@ class UnitTypeAdmin(BaseQATrackAdmin):
 
     list_display = ['model_name', 'vendor', 'unit_class', 'collapse']
     list_filter = ['unit_class', 'vendor']
-    list_editable = ['unit_class', 'vendor', 'collapse']
+    list_editable = ['collapse']
 
     def get_queryset(self, request):
         return super(UnitTypeAdmin, self).get_queryset(request).select_related(
