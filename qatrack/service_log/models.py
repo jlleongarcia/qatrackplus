@@ -58,7 +58,7 @@ class ServiceArea(models.Model):
     class Meta:
         ordering = ("name",)
         verbose_name = _l('service area')
-        verbose_name_plural = _l('service area')
+        verbose_name_plural = _l('service areas')
 
     def natural_key(self):
         return (self.name,)
@@ -943,7 +943,7 @@ class ServiceEventSchedule(SchedulingMixin, models.Model):
         verbose_name_plural = _l("Assign Service Event Templates to Units")
 
     def get_last_instance(self):
-        """ return last service_event """
+        """ return last service_event for this schedule's unit, service area, and template """
 
         try:
             return ServiceEvent.objects.filter(
