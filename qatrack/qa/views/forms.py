@@ -186,6 +186,8 @@ class CreateTestInstanceForm(TestInstanceWidgetsMixin, forms.Form):
     def __init__(self, *args, **kwargs):
         super(CreateTestInstanceForm, self).__init__(*args, **kwargs)
         self.in_progress = False
+        # Initialize for robustness, though set_unit_test_info should always be called
+        self.show_test_list_name = False
         self.fields["comment"].widget.attrs["rows"] = 2
 
     def set_unit_test_info(self, unit_test_info, show_test_list_name):
@@ -267,8 +269,9 @@ class UpdateTestInstanceForm(TestInstanceWidgetsMixin, forms.ModelForm):
         )
 
     def __init__(self, *args, **kwargs):
-
+        self.show_test_list_name = False  # Initialize attribute
         super(UpdateTestInstanceForm, self).__init__(*args, **kwargs)
+
         self.in_progress = self.instance.test_list_instance.in_progress
         self.fields["value"].required = False
         self.unit_test_info = self.instance.unit_test_info
@@ -304,7 +307,7 @@ class UpdateTestInstanceFormSet(UserFormsetMixin, BaseUpdateTestInstanceFormSet)
         prev_cat = None
         for form in self.forms:
             cur_cat = form.unit_test_info.test.category_id
-            form.show_category = cur_cat != prev_cat
+            form.show_test_list_name = cur_cat != prev_cat  # Correct attribute name
             prev_cat = cur_cat
 
 
