@@ -1652,25 +1652,21 @@
                 $(this).toggleClass('active');
             });
         
-        // Handle clicks on group headers
-        $('.group-header').click(function(e) {
-            e.preventDefault(); // Prevent default link behavior
-            var groupName = $(this).data('group');
-            var $testRows = $('.test-row[data-group="' + groupName + '"], .control-group[data-group="' + groupName + '"], .qa-comment[data-group="' + groupName + '"], .qa-procedure[data-group="' + groupName + '"]');
-            var $icon = $(this).find('.group-toggle i');
-    
-            // Toggle visibility of test rows
-            $testRows.toggleClass('show');
-            $testRows.attr('aria-hidden', function(i, attr){
-                return attr === 'true' ? 'false' : 'true';
-            });
-    
-            // Toggle icon
+        // Handle clicks on group headers for collapsible sections
+        // Assumes initial state is collapsed (no 'show' class on group rows, icon is 'fa-chevron-right' in HTML)
+        // The CSS handles hiding rows without the 'show' class.
+        $('#perform-qa-table').on('click', '.group-header .group-toggle', function(e) {
+            e.preventDefault();
+            var groupName = $(this).closest('.group-header').data('group');
+            // Target all <tr> elements (value, comment, procedure, error rows) within the tbody
+            // that belong to this group.
+            var $groupRows = $('#perform-qa-table tbody tr[data-group="' + groupName + '"]');
+            var $icon = $(this).find('i.fa');
+
+            $groupRows.toggleClass('show');
+            $groupRows.attr('aria-hidden', !$groupRows.hasClass('show'));
+            // Update icon based on visibility (fa-chevron-down for expanded, fa-chevron-right for collapsed)
             $icon.toggleClass('fa-chevron-down fa-chevron-right');
-            $(this).toggleClass('expanded');
-            $(this).attr('aria-expanded', function(i, attr){
-                return attr === 'true' ? 'false' : 'true';
-            });
         });
     
         });

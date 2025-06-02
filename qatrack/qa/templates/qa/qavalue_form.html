@@ -4,7 +4,7 @@
 {% load attach_tags %}
 {% for field in form %}
   {% if field.errors %}
-    <tr class="no-hover qa-error row-{{ form.prefix }}">
+    <tr class="no-hover qa-error row-{{ form.prefix }}" {% if delim %}data-group="{{ delim.name|slugify }}"{% endif %}>
       <td colspan="{% qa_table_colspan perms %}">
         <div class="error-container error-bar in">
           {% for error in field.errors %}
@@ -18,8 +18,8 @@
   {% endif %}
 {% endfor %}
 
-{% with ref=test_info.reference  tol=test_info.tolerance  test=test_info.test uti=test_info.unit_test_info slug=test_info.test.slug %}
-<tr id="{{ test_info.test.slug }}-row" class="control-group qa-valuerow qa-{{ test_info.test.type }} row-{{ form.prefix }}" data-prefix="{{ form.prefix }}" data-group="{{ delim.name|slugify }}" aria-hidden="true">
+{% with ref=test_info.reference tol=test_info.tolerance test=test_info.test uti=test_info.unit_test_info slug=test_info.test.slug %}
+<tr id="{{ test_info.test.slug }}-row" class="control-group qa-valuerow qa-{{ test_info.test.type }} row-{{ form.prefix }}" data-prefix="{{ form.prefix }}" {% if delim %}data-group="{{ delim.name|slugify }}"{% endif %}>
 
   {% for hidden in form.hidden_fields %}
       {{ hidden }}
@@ -115,7 +115,7 @@
 
 </tr>
 
-<tr id="{{ slug }}-comment-row" class="qa-comment no-hover row-{{ form.prefix }}" data-group="{{ delim.name|slugify }}" aria-hidden="true">
+<tr id="{{ slug }}-comment-row" class="qa-comment no-hover row-{{ form.prefix }}" {% if delim %}data-group="{{ delim.name|slugify }}"{% endif %}>
   <td id="{{ slug }}-comment" colspan="{% qa_table_colspan perms %}" class="">
     <div class="error-bar {% if form.errors %}in{% endif %}">
       <div class="procedure-bar">
@@ -129,7 +129,7 @@
   </td>
 </tr>
 
-<tr id="{{ slug }}-procedure-row" class="qa-procedure no-hover row-{{ form.prefix }} {%if test_info.test.hidden %}hidden-procedure{% endif %}" data-group="{{ delim.name|slugify }}" aria-hidden="true">
+<tr id="{{ slug }}-procedure-row" class="qa-procedure no-hover row-{{ form.prefix }} {%if test_info.test.hidden %}hidden-procedure{% endif %}" {% if delim %}data-group="{{ delim.name|slugify }}"{% endif %}>
   <td id="{{ slug }}-procedure" colspan="{% qa_table_colspan perms %}"  class="">
     {% if form.unit_test_info.test.procedure or form.unit_test_info.test.description or form.unit_test_info.test.attachment_set.count %}
       <div class="error-bar {% if form.errors %}in{% endif %}">

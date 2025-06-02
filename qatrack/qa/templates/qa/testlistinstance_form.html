@@ -533,9 +533,7 @@
                                                     </tr>
                                                 {% endif %}
 
-                                                <tr class="test-row" data-group="{{ delim.name|slugify }}">
-                                                    {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=0 %}
-                                                </tr>
+                                                {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=0 delim=delim %}
                                             {% endwith %}
                                         {% endfor %}
                                     </tbody>
@@ -967,6 +965,3 @@
 {% block end_body_extra_script %}
 
 {% endblock %}
-
-
-
