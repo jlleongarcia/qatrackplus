@@ -2,9 +2,23 @@
 {% load qatrack_tags %}
 {% load qa_tags %}
 {% load attach_tags %}
+{% load capture_tags %}
+ 
+{% if delim %}
+    {% hasattr_static delim "name" as delim_has_name %}
+    {% hasattr_static delim "class" as delim_has_class_attr %}
+    {% if delim_has_name and delim_has_class_attr and delim.class == "sublist" %}
+        {% capture as resolved_group_slug %}{{ delim.name|slugify }}{% endcapture %}
+    {% else %}
+        {% capture as resolved_group_slug %}{% endcapture %}
+    {% endif %}
+{% else %}
+    {% capture as resolved_group_slug %}{% endcapture %}
+{% endif %}
+
 {% for field in form %}
   {% if field.errors %}
-    <tr class="no-hover qa-error row-{{ form.prefix }}" {% if delim %}data-group="{{ delim.name|slugify }}"{% endif %}>
+    <tr class="no-hover qa-error row-{{ form.prefix }}" {% if resolved_group_slug %}data-group="{{ resolved_group_slug }}"{% endif %}>
       <td colspan="{% qa_table_colspan perms %}">
         <div class="error-container error-bar in">
           {% for error in field.errors %}
@@ -19,7 +33,7 @@
 {% endfor %}
 
 {% with ref=test_info.reference tol=test_info.tolerance test=test_info.test uti=test_info.unit_test_info slug=test_info.test.slug %}
-<tr id="{{ test_info.test.slug }}-row" class="control-group qa-valuerow qa-{{ test_info.test.type }} row-{{ form.prefix }}" data-prefix="{{ form.prefix }}" {% if delim %}data-group="{{ delim.name|slugify }}"{% endif %}>
+<tr id="{{ test_info.test.slug }}-row" class="control-group qa-valuerow qa-{{ test_info.test.type }} row-{{ form.prefix }}" data-prefix="{{ form.prefix }}" {% if resolved_group_slug %}data-group="{{ resolved_group_slug }}"{% endif %}>
 
   {% for hidden in form.hidden_fields %}
       {{ hidden }}
@@ -115,7 +129,7 @@
 
 </tr>
 
-<tr id="{{ slug }}-comment-row" class="qa-comment no-hover row-{{ form.prefix }}" {% if delim %}data-group="{{ delim.name|slugify }}"{% endif %}>
+<tr id="{{ slug }}-comment-row" class="qa-comment no-hover row-{{ form.prefix }}" {% if resolved_group_slug %}data-group="{{ resolved_group_slug }}"{% endif %}>
   <td id="{{ slug }}-comment" colspan="{% qa_table_colspan perms %}" class="">
     <div class="error-bar {% if form.errors %}in{% endif %}">
       <div class="procedure-bar">
@@ -129,7 +143,7 @@
   </td>
 </tr>
 
-<tr id="{{ slug }}-procedure-row" class="qa-procedure no-hover row-{{ form.prefix }} {%if test_info.test.hidden %}hidden-procedure{% endif %}" {% if delim %}data-group="{{ delim.name|slugify }}"{% endif %}>
+<tr id="{{ slug }}-procedure-row" class="qa-procedure no-hover row-{{ form.prefix }} {%if test_info.test.hidden %}hidden-procedure{% endif %}" {% if resolved_group_slug %}data-group="{{ resolved_group_slug }}"{% endif %}>
   <td id="{{ slug }}-procedure" colspan="{% qa_table_colspan perms %}"  class="">
     {% if form.unit_test_info.test.procedure or form.unit_test_info.test.description or form.unit_test_info.test.attachment_set.count %}
       <div class="error-bar {% if form.errors %}in{% endif %}">

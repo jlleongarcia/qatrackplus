@@ -255,3 +255,9 @@ def service_event_btn(event, size='xs'):
         'id': event.id,
         'size': size
     })
+
+@register.simple_tag
+def hasattr_static(obj, attr_name):
+    if obj is None:
+        return False
+    return hasattr(obj, attr_name)

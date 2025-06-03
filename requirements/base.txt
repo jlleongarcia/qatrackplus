@@ -12,6 +12,7 @@ coverage==5.4
 django-admin-views==0.8.0
 django-auth-adfs==1.6.0
 django-braces==1.13.0
+django-capture-tag==1.0
 django-contrib-comments==1.8.0
 django-coverage==1.2.4
 django-crispy-forms==1.6.0

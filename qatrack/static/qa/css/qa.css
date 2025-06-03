@@ -353,7 +353,7 @@ div.sublist-description {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 0;
+    max-width: 0; /* potential first cell layout problem */
 }
 
 #perform-qa-table > tbody > tr > td.qa-category div {
@@ -603,7 +603,7 @@ td.qa-category .comment-bar {
     height: 0px;
 }
 #perform-qa-table tr {
-    height: 0px;
+    height: 30px; /* potential first cell layout problem */
 }
 
 .comp-calc-spinner {
@@ -617,14 +617,16 @@ td.qa-category .comment-bar {
 .test-row,
 .control-group,
 .qa-comment,
-.qa-procedure {
-    display: table-row; /* Initially none to hide detail rows */
+.qa-procedure,
+.qa-error {
+    display: none; /* Initially table-row to show detail rows */
 }
 
 .test-row.show,
 .control-group.show,
 .qa-comment.show,
-.qa-procedure.show {
+.qa-procedure.show,
+.qa-error.show {
     display: table-row; /* Display detail rows when expanded */
 }
 
