@@ -16,6 +16,7 @@ from django.db import models
 from django.db.models import Count, Q, QuerySet
 from django.urls import reverse
 from django.utils import timezone
+from django.template.defaultfilters import slugify
 from django.utils.translation import gettext as _
 from django.utils.translation import gettext_lazy as _l
 from django_comments.models import Comment
@@ -2732,63 +2733,62 @@ class TestListCycleMembership(models.Model):
 
 def construct_sublist_borders(test_list, tests=None):
     """
-
     Return indexes where visible marks should be shown for sublists
     with visibility enabled.
-
     Note this is pretty hacky since the tests belonging to the test list
     and sublists may have changed in the meantime.
-
     """
+    if tests is None:
+        tests = []
 
     borders = {
-        'starts': {
-            0: {'class': 'first'},
-        },
-        'ends': {
-            (len(tests) - 1): "__end__"
-        },
+        'starts': {},  # Info for group headers. Key is index of the first test in an outlined group.
+                       # Value is a dict with 'class', 'name', 'slug', etc.
+        'test_group_slugs': {}  # A dict, where test_group_slugs[i] is the slug of the
+                                # outlined group test 'i' belongs to, or None.
+        # 'ends': {} # Can be populated if JS needs explicit group end markers
     }
 
-    test_sublist = {}
-    for sublist in test_list.get_children():
-        test_sublist.update({t.pk: sublist for t in sublist.child.ordered_tests()})
+    if not tests:
+        return borders
 
-    current_sub_being_outlined = None
+    # Create a map of test.pk to its parent Sublist object (which contains 'outline' and 'child' TestList)
+    test_to_sublist_map = {}
+    # Assuming get_children() fetches Sublist objects which have a 'child' (TestList) and 'outline' attribute
+    for sublist_relation in test_list.get_children():
+        for t in sublist_relation.child.ordered_tests(): # ordered_tests() on the child TestList
+            test_to_sublist_map[t.pk] = sublist_relation
 
-    for i, test in enumerate(tests):
-        test_part_of_sublist = test.pk in test_sublist
-        if test_part_of_sublist:
-            sublist = test_sublist[test.pk]
-            if current_sub_being_outlined:
-                same_sublist = sublist == current_sub_being_outlined
-                if not same_sublist:
-                    borders['ends'][i - 1] = True
-                    if sublist.outline:
-                        current_sub_being_outlined = sublist
-                        borders['starts'][i] = {
-                            'class': 'sublist',
-                            'sublist': sublist.pk,
-                            'name': sublist.child.name,
-                            'description': sublist.child.description,
-                        }
-                    else:
-                        current_sub_being_outlined = False
-            else:
-                if sublist.outline:
-                    current_sub_being_outlined = sublist
-                    borders['starts'][i] = {
-                        'class': 'sublist',
-                        'sublist': sublist.pk,
-                        'name': sublist.child.name,
-                        'description': sublist.child.description,
-                    }
-                else:
-                    current_sub_being_outlined = None
-        elif current_sub_being_outlined:
-            borders['ends'][i-1] = True
-            current_sub_being_outlined = None
+    current_outlined_sublist_object = None  # Stores the actual Sublist object if it's being outlined
+    current_active_group_slug = None
 
-    if current_sub_being_outlined:
-        borders['ends'][i] = True
+    for i, test_obj in enumerate(tests): # test_obj is a Test model instance
+
+        parent_sublist_relation = test_to_sublist_map.get(test_obj.pk)
+
+        if parent_sublist_relation and parent_sublist_relation.outline:
+            # This test is part of an outlined sublist
+            if current_outlined_sublist_object != parent_sublist_relation:
+                # It's a new outlined group or a switch from a different outlined group
+                current_outlined_sublist_object = parent_sublist_relation
+                group_name = parent_sublist_relation.child.name # The TestList that is the sublist
+                current_active_group_slug = slugify(group_name)
+
+                borders['starts'][i] = {
+                    'class': 'sublist',
+                    'name': group_name,
+                    'description': parent_sublist_relation.child.description,
+                    'slug': current_active_group_slug
+                }
+            # If it's the same outlined sublist, current_active_group_slug is already set.
+        else:
+            # This test is not part of an outlined sublist, or not in a sublist at all.
+            # If we were previously in an outlined sublist, it has now ended.
+            if current_outlined_sublist_object is not None:
+                current_outlined_sublist_object = None
+                current_active_group_slug = None
+
+        # Assign the slug (or None) to the current test
+        borders['test_group_slugs'][i] = current_active_group_slug
+
     return borders
