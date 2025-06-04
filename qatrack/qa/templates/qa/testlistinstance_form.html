@@ -533,7 +533,7 @@
                                                     </tr>
                                                 {% endif %}
 
-                                                {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=0 delim=delim %}
+                                                {% qa_value_form test_form test_list perms user test_info=test_form.get_test_info unit_test_collection=unit_test_collection show_test_list_name=0 delim=delim.name|slugify %}
                                             {% endwith %}
                                         {% endfor %}
                                     </tbody>
