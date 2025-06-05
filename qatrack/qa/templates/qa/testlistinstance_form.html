@@ -524,7 +524,6 @@
                                         {% for test_form in formset %}
                                             {% with borders.starts|lookup:forloop.counter0 as header_delim_info %} {# For group header #}
                                             {% with borders.test_group_slugs|lookup:forloop.counter0 as current_row_group_slug %} {# For data-group on this row #}
-
                                                 {% if header_delim_info and header_delim_info.class == "sublist" %}
                                                     <tr class="group-header" data-group="{{ header_delim_info.slug }}">
                                                         <td colspan="{% qa_table_colspan perms %}">

@@ -353,7 +353,6 @@ div.sublist-description {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 0; /* potential first cell layout problem */
 }
 
 #perform-qa-table > tbody > tr > td.qa-category div {
@@ -602,9 +601,6 @@ td.qa-category .procedure-bar,
 td.qa-category .comment-bar {
     height: 0px;
 }
-#perform-qa-table tr {
-    height: 30px; /* potential first cell layout problem */
-}
 
 .comp-calc-spinner {
   display: inline-block;
@@ -627,7 +623,7 @@ td.qa-category .comment-bar {
 .qa-comment.show,
 .qa-procedure.show,
 .qa-error.show {
-    display: table-row; /* Display detail rows when expanded */
+    display: table-row !important; /* Display detail rows when expanded */
 }
 
 .group-header {
@@ -635,11 +631,18 @@ td.qa-category .comment-bar {
     cursor: pointer; /* Make the header look clickable */
 }
 
+/* Ensure the group header row behaves correctly */
+#perform-qa-table .group-header {
+    display: table-row !important; /* Ensure the header row is treated as a table row */
+}
+
 .group-header .group-toggle {
     display: block; /* Make the whole header clickable */
     padding: 10px;
     text-decoration: none;
     color: #333;
+    width: 100%; /* Ensure the toggle link takes the full width of its parent cell */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .group-header .group-toggle i {
