@@ -261,7 +261,6 @@ INSTALLED_APPS = [
     'qatrack.attachments',
     'qatrack.reports',
     'admin_views',
-    'capture_tag',
 ]
 
 
